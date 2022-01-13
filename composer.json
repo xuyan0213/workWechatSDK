@@ -1,0 +1,41 @@
+{
+  "name": "xuyan0213/work_wechat_sdk",
+  "description": "企业微信SDK",
+  "type": "l",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "WorkWechatSdk\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "xuyan",
+      "email": "10539670@qq.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=7.2",
+    "guzzlehttp/guzzle": "^6.2 || ^7.0",
+    "pimple/pimple": "^3.0",
+    "symfony/cache": "^3.3 || ^4.3 || ^5.0||^6.0",
+    "symfony/event-dispatcher": "^4.3 || ^5.0 || ^6.0",
+    "symfony/http-foundation": "^2.7 || ^3.0 || ^4.0 || ^5.0",
+    "symfony/psr-http-message-bridge": "^0.3 || ^1.0 || ^2.0",
+    "easywechat-composer/easywechat-composer": "^1.1",
+    "monolog/monolog": "^1.22 || ^2.0",
+    "ext-openssl": "*",
+    "ext-json": "*",
+    "ext-mbstring": "*",
+    "ext-ctype": "*",
+    "ext-simplexml": "*",
+    "ext-libxml": "*",
+    "ext-curl": "*"
+  },
+  "config": {
+    "allow-plugins": {
+      "easywechat-composer/easywechat-composer": true
+    }
+  }
+}
