@@ -3,10 +3,13 @@
 
 namespace WorkWechatSdk\Kernel;
 
+use GuzzleHttp\Exception\GuzzleException;
 use WorkWechatSdk\Kernel\Contracts\AccessTokenInterface;
 use WorkWechatSdk\Kernel\Exceptions\HttpException;
 use WorkWechatSdk\Kernel\Exceptions\InvalidArgumentException;
+use WorkWechatSdk\Kernel\Exceptions\InvalidConfigException;
 use WorkWechatSdk\Kernel\Exceptions\RuntimeException;
+use WorkWechatSdk\Kernel\Support\Collection;
 use WorkWechatSdk\Kernel\Traits\HasHttpRequests;
 use WorkWechatSdk\Kernel\Traits\InteractsWithCache;
 use Psr\Http\Message\RequestInterface;
@@ -15,7 +18,6 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * Class AccessToken.
  *
- * @author overtrue <i@overtrue.me>
  */
 abstract class AccessToken implements AccessTokenInterface
 {
@@ -23,7 +25,7 @@ abstract class AccessToken implements AccessTokenInterface
     use InteractsWithCache;
 
     /**
-     * @var \WorkWechatSdk\Kernel\ServiceContainer
+     * @var ServiceContainer
      */
     protected $app;
 
@@ -60,7 +62,7 @@ abstract class AccessToken implements AccessTokenInterface
     /**
      * AccessToken constructor.
      *
-     * @param \WorkWechatSdk\Kernel\ServiceContainer $app
+     * @param ServiceContainer $app
      */
     public function __construct(ServiceContainer $app)
     {
@@ -75,11 +77,11 @@ abstract class AccessToken implements AccessTokenInterface
     /**
      * @return array
      *
-     * @throws \WorkWechatSdk\Kernel\Exceptions\HttpException
+     * @throws HttpException
      * @throws \Psr\SimpleCache\InvalidArgumentException
-     * @throws \WorkWechatSdk\Kernel\Exceptions\InvalidConfigException
-     * @throws \WorkWechatSdk\Kernel\Exceptions\InvalidArgumentException
-     * @throws \WorkWechatSdk\Kernel\Exceptions\RuntimeException
+     * @throws InvalidConfigException
+     * @throws InvalidArgumentException
+     * @throws RuntimeException
      */
     public function getRefreshedToken(): array
     {
@@ -91,11 +93,11 @@ abstract class AccessToken implements AccessTokenInterface
      *
      * @return array
      *
-     * @throws \WorkWechatSdk\Kernel\Exceptions\HttpException
+     * @throws HttpException
      * @throws \Psr\SimpleCache\InvalidArgumentException
-     * @throws \WorkWechatSdk\Kernel\Exceptions\InvalidConfigException
-     * @throws \WorkWechatSdk\Kernel\Exceptions\InvalidArgumentException
-     * @throws \WorkWechatSdk\Kernel\Exceptions\RuntimeException
+     * @throws InvalidConfigException
+     * @throws InvalidArgumentException
+     * @throws RuntimeException
      */
     public function getToken(bool $refresh = false): array
     {
@@ -122,10 +124,9 @@ abstract class AccessToken implements AccessTokenInterface
      * @param string $token
      * @param int    $lifetime
      *
-     * @return \WorkWechatSdk\Kernel\Contracts\AccessTokenInterface
+     * @return AccessTokenInterface
      *
-     * @throws \WorkWechatSdk\Kernel\Exceptions\InvalidArgumentException
-     * @throws \WorkWechatSdk\Kernel\Exceptions\RuntimeException
+     * @throws RuntimeException
      * @throws \Psr\SimpleCache\InvalidArgumentException
      */
     public function setToken(string $token, int $lifetime = 7200): AccessTokenInterface
@@ -143,13 +144,13 @@ abstract class AccessToken implements AccessTokenInterface
     }
 
     /**
-     * @return \WorkWechatSdk\Kernel\Contracts\AccessTokenInterface
+     * @return AccessTokenInterface
      *
-     * @throws \WorkWechatSdk\Kernel\Exceptions\HttpException
+     * @throws HttpException
      * @throws \Psr\SimpleCache\InvalidArgumentException
-     * @throws \WorkWechatSdk\Kernel\Exceptions\InvalidConfigException
-     * @throws \WorkWechatSdk\Kernel\Exceptions\InvalidArgumentException
-     * @throws \WorkWechatSdk\Kernel\Exceptions\RuntimeException
+     * @throws InvalidConfigException
+     * @throws InvalidArgumentException
+     * @throws RuntimeException
      */
     public function refresh(): AccessTokenInterface
     {
@@ -160,15 +161,15 @@ abstract class AccessToken implements AccessTokenInterface
 
     /**
      * @param array $credentials
-     * @param bool  $toArray
+     * @param bool $toArray
      *
-     * @return \Psr\Http\Message\ResponseInterface|\WorkWechatSdk\Kernel\Support\Collection|array|object|string
+     * @return ResponseInterface|Collection|array|object|string
      *
-     * @throws \WorkWechatSdk\Kernel\Exceptions\HttpException
-     * @throws \WorkWechatSdk\Kernel\Exceptions\InvalidConfigException
-     * @throws \WorkWechatSdk\Kernel\Exceptions\InvalidArgumentException
+     * @throws HttpException
+     * @throws InvalidConfigException
+     * @throws InvalidArgumentException|GuzzleException
      */
-    public function requestToken(array $credentials, $toArray = false)
+    public function requestToken(array $credentials, bool $toArray = false)
     {
         $response = $this->sendRequest($credentials);
         $result = json_decode($response->getBody()->getContents(), true);
@@ -182,16 +183,16 @@ abstract class AccessToken implements AccessTokenInterface
     }
 
     /**
-     * @param \Psr\Http\Message\RequestInterface $request
+     * @param RequestInterface $request
      * @param array                              $requestOptions
      *
-     * @return \Psr\Http\Message\RequestInterface
+     * @return RequestInterface
      *
-     * @throws \WorkWechatSdk\Kernel\Exceptions\HttpException
+     * @throws HttpException
      * @throws \Psr\SimpleCache\InvalidArgumentException
-     * @throws \WorkWechatSdk\Kernel\Exceptions\InvalidConfigException
-     * @throws \WorkWechatSdk\Kernel\Exceptions\InvalidArgumentException
-     * @throws \WorkWechatSdk\Kernel\Exceptions\RuntimeException
+     * @throws InvalidConfigException
+     * @throws InvalidArgumentException
+     * @throws RuntimeException
      */
     public function applyToRequest(RequestInterface $request, array $requestOptions = []): RequestInterface
     {
@@ -209,8 +210,8 @@ abstract class AccessToken implements AccessTokenInterface
      *
      * @return ResponseInterface
      *
-     * @throws \WorkWechatSdk\Kernel\Exceptions\InvalidArgumentException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws InvalidArgumentException
+     * @throws GuzzleException
      */
     protected function sendRequest(array $credentials): ResponseInterface
     {
@@ -224,7 +225,7 @@ abstract class AccessToken implements AccessTokenInterface
     /**
      * @return string
      */
-    protected function getCacheKey()
+    protected function getCacheKey(): string
     {
         return $this->cachePrefix.md5(json_encode($this->getCredentials()));
     }
@@ -234,11 +235,11 @@ abstract class AccessToken implements AccessTokenInterface
      *
      * @return array
      *
-     * @throws \WorkWechatSdk\Kernel\Exceptions\HttpException
+     * @throws HttpException
      * @throws \Psr\SimpleCache\InvalidArgumentException
-     * @throws \WorkWechatSdk\Kernel\Exceptions\InvalidConfigException
-     * @throws \WorkWechatSdk\Kernel\Exceptions\InvalidArgumentException
-     * @throws \WorkWechatSdk\Kernel\Exceptions\RuntimeException
+     * @throws InvalidConfigException
+     * @throws InvalidArgumentException
+     * @throws RuntimeException
      */
     protected function getQuery(): array
     {
@@ -248,7 +249,7 @@ abstract class AccessToken implements AccessTokenInterface
     /**
      * @return string
      *
-     * @throws \WorkWechatSdk\Kernel\Exceptions\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function getEndpoint(): string
     {
@@ -262,7 +263,7 @@ abstract class AccessToken implements AccessTokenInterface
     /**
      * @return string
      */
-    public function getTokenKey()
+    public function getTokenKey(): string
     {
         return $this->tokenKey;
     }
