@@ -1,7 +1,8 @@
 <?php
 
 
-namespace WorkWechatSdk\WeWork\ExternalContact;;
+namespace WorkWechatSdk\WeWork\ExternalContact;
+;
 
 use WorkWechatSdk\Kernel\BaseClient;
 use GuzzleHttp\Exception\GuzzleException;
@@ -20,8 +21,8 @@ class TagClient extends BaseClient
      *
      * @see https://developer.work.weixin.qq.com/document/path/92117#获取企业标签库
      *
-     * @param array $tagIds
-     * @param array $groupIds
+     * @param array $tagIds 要查询的标签id
+     * @param array $groupIds 要查询的标签组id，返回该标签组以及其下的所有标签信息
      *
      * @return array|Collection|object|ResponseInterface|string
      *
@@ -45,16 +46,24 @@ class TagClient extends BaseClient
      *
      * @see https://developer.work.weixin.qq.com/document/path/92117#添加企业客户标签
      *
-     * @param array $params
-     *
+     * @param array $tags   标签
+     * @param string $groupId 标签组id
+     * @param string $groupName	标签组名称，最长为30个字符
+     * @param array $attributes
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws InvalidConfigException
      * @throws GuzzleException
+     * @throws InvalidConfigException
      */
 
-    public function addCorpTag(array $params)
+    public function addCorpTag(array $tags, string $groupId,string $groupName,array $attributes)
     {
+        $params = [
+            'group_id'=>$groupId,
+            'group_name'=>$groupName,
+            'tag'=>$tags
+        ];
+        $params = $attributes ? $params : array_merge($params, $attributes);
         return $this->httpPostJson('cgi-bin/externalcontact/add_corp_tag', $params);
     }
 
@@ -122,23 +131,23 @@ class TagClient extends BaseClient
      *
      * @see https://work.weixin.qq.com/api/doc/90000/90135/92118
      *
-     * @param string $userId    添加外部联系人的userid
-     * @param string $externalUserId    外部联系人userid
-     * @param array $addTag     要标记的标签列表
-     * @param array $removeTag  要移除的标签列表
+     * @param string $userId 添加外部联系人的userid
+     * @param string $externalUserId 外部联系人userid
+     * @param array $addTag 要标记的标签列表
+     * @param array $removeTag 要移除的标签列表
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws GuzzleException
      * @throws InvalidConfigException
      */
 
-    public function markTags(string $userId,string $externalUserId,array $addTag,array $removeTag)
+    public function markTags(string $userId, string $externalUserId, array $addTag, array $removeTag)
     {
         $params = [
             'userid' => $userId,
-            'external_userid'=>$externalUserId,
-            'add_tag'=>$addTag,
-            'remove_tag' =>$removeTag
+            'external_userid' => $externalUserId,
+            'add_tag' => $addTag,
+            'remove_tag' => $removeTag
         ];
         return $this->httpPostJson('cgi-bin/externalcontact/mark_tag', $params);
     }
