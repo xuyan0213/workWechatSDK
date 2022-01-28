@@ -18,9 +18,9 @@ class TransferCustomerClient extends BaseClient
     /**
      * 获取离职成员的客户列表.
      *
-     * @param null|int $pageId      分页查询，要查询页号，从0开始
-     * @param null|int $pageSize    每次返回的最大记录数，默认为1000，最大值为1000
-     * @param string|null $cursor   分页查询游标，字符串类型，适用于数据量较大的情况，如果使用该参数则无需填写page_id，该参数由上一次调用返回
+     * @param int $pageId      分页查询，要查询页号，从0开始
+     * @param int $pageSize    每次返回的最大记录数，默认为1000，最大值为1000
+     * @param string $cursor   分页查询游标，字符串类型，适用于数据量较大的情况，如果使用该参数则无需填写page_id，该参数由上一次调用返回
      *
      * @return array|Collection|object|ResponseInterface|string
      *
@@ -29,7 +29,7 @@ class TransferCustomerClient extends BaseClient
      *
      * @see https://developer.work.weixin.qq.com/document/path/92124
      */
-    public function getUnassigned(int $pageId = null, int $pageSize = 1000, string $cursor = null)
+    public function getUnassigned(int $pageId = 0, int $pageSize = 1000, string $cursor = '')
     {
         $params = [
             'page_id' => $pageId,
@@ -95,11 +95,11 @@ class TransferCustomerClient extends BaseClient
      *
      * @param string $handoverUserId 原添加成员的userid
      * @param string $takeoverUserId 接替成员的userid
-     * @param null|string $cursor    分页查询的cursor，每个分页返回的数据不会超过1000条；不填或为空表示获取第一个分页
+     * @param string $cursor    分页查询的cursor，每个分页返回的数据不会超过1000条；不填或为空表示获取第一个分页
      *
      * @throws InvalidConfigException|GuzzleException
      */
-    public function resignedTransferResult(string $handoverUserId, string $takeoverUserId, ?string $cursor = null)
+    public function resignedTransferResult(string $handoverUserId, string $takeoverUserId, string $cursor = '')
     {
         $params = [
             'handover_userid' => $handoverUserId,
@@ -119,11 +119,11 @@ class TransferCustomerClient extends BaseClient
      *
      * @param string $handoverUserId 原添加成员的userid
      * @param string $takeoverUserId 接替成员的userid
-     * @param null|string $cursor    分页查询的cursor，每个分页返回的数据不会超过1000条；不填或为空表示获取第一个分页
+     * @param string $cursor    分页查询的cursor，每个分页返回的数据不会超过1000条；不填或为空表示获取第一个分页
      *
      * @throws InvalidConfigException|GuzzleException
      */
-    public function transferResult(string $handoverUserId, string $takeoverUserId, ?string $cursor = null)
+    public function transferResult(string $handoverUserId, string $takeoverUserId, string $cursor = '')
     {
         $params = [
             'handover_userid' => $handoverUserId,
@@ -171,6 +171,7 @@ class TransferCustomerClient extends BaseClient
      *
      * @throws InvalidConfigException
      * @throws GuzzleException
+     *
      *
      * @see https://developer.work.weixin.qq.com/document/14020
      */
