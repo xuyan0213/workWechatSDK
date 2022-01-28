@@ -27,7 +27,7 @@ trait InteractsWithCache
      *
      * @return \Psr\SimpleCache\CacheInterface
      *
-     * @throws \EasyWeChat\Kernel\Exceptions\InvalidArgumentException
+     * @throws \WorkWechatSdk\Kernel\Exceptions\InvalidArgumentException
      */
     public function getCache()
     {
@@ -54,7 +54,7 @@ trait InteractsWithCache
      *
      * @return $this
      *
-     * @throws \EasyWeChat\Kernel\Exceptions\InvalidArgumentException
+     * @throws \WorkWechatSdk\Kernel\Exceptions\InvalidArgumentException
      */
     public function setCache($cache)
     {

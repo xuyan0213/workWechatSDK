@@ -12,7 +12,7 @@ use WorkWechatSdk\Kernel\Helpers;
 use WorkWechatSdk\Kernel\Support\Collection;
 
 /**
- * 消息推送
+ * 客户联系-消息推送
  *
  */
 class MessageClient extends BaseClient
@@ -175,12 +175,13 @@ class MessageClient extends BaseClient
      */
     public function sendWelcome(string $welcomeCode, string $content = '', array $attachments = [])
     {
+        Helpers::setTypes('welcome'); //设置格式化数组为欢迎语
         $params = [
             'welcome_code' => $welcomeCode,
             'text' => [
                 'content' => $content
             ],
-            'attachments' => $this->formatMessage($attachments)
+            'attachments' => Helpers::formatMessage($attachments)
         ];
         return $this->httpPostJson('cgi-bin/externalcontact/send_welcome_msg', $params);
     }

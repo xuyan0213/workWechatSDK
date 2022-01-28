@@ -5,7 +5,7 @@ namespace WorkWechatSdk\WeWork\Auth;
 use WorkWechatSdk\Kernel\AccessToken as BaseAccessToken;
 
 /**
- * Class AccessToken.
+ * AccessToken.
  *
  */
 class AccessToken extends BaseAccessToken
@@ -18,7 +18,7 @@ class AccessToken extends BaseAccessToken
     /**
      * @var int
      */
-    protected $safeSeconds = 0;
+    protected int $safeSeconds = 0;
 
     /**
      * 通过secret获取accessToken

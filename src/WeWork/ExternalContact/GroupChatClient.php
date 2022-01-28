@@ -49,8 +49,8 @@ class GroupChatClient extends BaseClient
      *
      * @see https://developer.work.weixin.qq.com/document/path/92122
      *
-     * @param string $chatId    客户群ID
-     * @param int $needName     是否需要返回群成员的名字group_chat.member_list.name。0-不返回；1-返回。默认不返回
+     * @param string $chatId 客户群ID
+     * @param int $needName 是否需要返回群成员的名字group_chat.member_list.name。0-不返回；1-返回。默认不返回
      *
      * @return array|Collection|object|ResponseInterface|string
      *
@@ -79,5 +79,82 @@ class GroupChatClient extends BaseClient
     public function opengidToChatid(string $opengid)
     {
         return $this->httpPostJson('cgi-bin/externalcontact/groupchat/get', compact('opengid'));
+    }
+
+    /**
+     * 配置客户群进群方式
+     * @see https://developer.work.weixin.qq.com/document/path/92229#%E9%85%8D%E7%BD%AE%E5%AE%A2%E6%88%B7%E7%BE%A4%E8%BF%9B%E7%BE%A4%E6%96%B9%E5%BC%8F
+     * @param int $scene 必填 场景。1:群的小程序插件, 2:群的二维码插件
+     * @param array $chatIdList 必填 使用该配置的客户群ID列表，支持5个。见客户群ID获取方法
+     * @param array $fields 非必填项,详情参考文档
+     * @return array|Collection|object|ResponseInterface|string
+     * @throws GuzzleException
+     * @throws InvalidConfigException
+     */
+    public function addJoinWay(int $scene, array $chatIdList, array $fields)
+    {
+        $tmp = [
+            'scene' => $scene,
+            'chat_id_list' => $chatIdList,
+        ];
+        $params = $fields ? array_merge($tmp, $fields) : $tmp;
+        return $this->httpPostJson('cgi-bin/externalcontact/groupchat/add_join_way', $params);
+    }
+
+    /**
+     * 获取客户群进群方式配置
+     *
+     * @see https://developer.work.weixin.qq.com/document/path/92229#获取客户群进群方式配置
+     * @param string $configId	联系方式的配置id
+     * @return array|object|ResponseInterface|string|Collection
+     * @throws GuzzleException
+     * @throws InvalidConfigException
+     */
+    public function getJoinWay(string $configId)
+    {
+        $params  = [
+            'config_id' => $configId
+        ];
+        return $this->httpPostJson('cgi-bin/externalcontact/groupchat/get_join_way', $params);
+    }
+
+    /**
+     * 更新客户群进群方式配置
+     *
+     * @see https://developer.work.weixin.qq.com/document/path/92229#更新客户群进群方式配置
+     * @param string $configId
+     * @param int $scene 必填 场景。1:群的小程序插件, 2:群的二维码插件
+     * @param array $chatIdList 必填 使用该配置的客户群ID列表，支持5个。见客户群ID获取方法
+     * @param array $fields 非必填项,详情参考文档
+     * @return array|object|ResponseInterface|string|Collection
+     * @throws GuzzleException
+     * @throws InvalidConfigException
+     */
+    public function updateJoinWay(string $configId, int $scene, array $chatIdList, array $fields)
+    {
+        $tmp = [
+            'config_id' => $configId,
+            'scene' => $scene,
+            'chat_id_list' => $chatIdList,
+        ];
+        $params = $fields ? array_merge($tmp, $fields) : $tmp;
+        return $this->httpPostJson('cgi-bin/externalcontact/groupchat/update_join_way', $params);
+    }
+
+    /**
+     * 删除客户群进群方式配置
+     *
+     * @see https://developer.work.weixin.qq.com/document/path/92229#删除客户群进群方式配置
+     * @param string $configId 联系方式的配置id
+     * @return array|object|ResponseInterface|string|Collection
+     * @throws GuzzleException
+     * @throws InvalidConfigException
+     */
+    public function delJoinWay(string $configId)
+    {
+        $params  = [
+            'config_id' => $configId
+        ];
+        return $this->httpPostJson('cgi-bin/externalcontact/groupchat/del_join_way', $params);
     }
 }

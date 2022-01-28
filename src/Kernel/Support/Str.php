@@ -2,7 +2,7 @@
 
 namespace WorkWechatSdk\Kernel\Support;
 
-use EasyWeChat\Kernel\Exceptions\RuntimeException;
+use WorkWechatSdk\Kernel\Exceptions\RuntimeException;
 use Exception;
 
 /**
@@ -54,7 +54,7 @@ class Str
      *
      * @return string
      *
-     * @throws \EasyWeChat\Kernel\Exceptions\RuntimeException
+     * @throws \WorkWechatSdk\Kernel\Exceptions\RuntimeException
      */
     public static function random(int $length = 16): string
     {

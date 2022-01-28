@@ -1,13 +1,5 @@
 <?php
 
-/*
- * This file is part of the overtrue/wechat.
- *
- * (c) overtrue <i@overtrue.me>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
 
 namespace WorkWechatSdk\WeWork\Base;
 
@@ -18,7 +10,7 @@ use WorkWechatSdk\Kernel\Exceptions\InvalidConfigException;
 use WorkWechatSdk\Kernel\Support\Collection;
 
 /**
- * Class Client.
+ * 通用
  *
  */
 class Client extends BaseClient
@@ -36,7 +28,8 @@ class Client extends BaseClient
     }
 
     /**
-     * 将明文corpid转换为第三方应用获取的corpid（仅限第三方服务商，转换已获授权企业的corpid）
+     * 将明文corpid转换为第三方应用获取的corpid
+     * （仅限第三方服务商，转换已获授权企业的corpid）
      *
      * @see https://open.work.weixin.qq.com/api/doc/90001/90143/95327#1.4%20corpid%E8%BD%AC%E6%8D%A2
      *
@@ -52,9 +45,10 @@ class Client extends BaseClient
     }
 
     /**
-     * 将自建应用获取的userid转换为第三方应用获取的userid（仅代开发自建应用或第三方应用可调用）
+     * 将自建应用获取的userid转换为第三方应用获取的userid
+     * （仅代开发自建应用或第三方应用可调用）
      *
-     * @see https://open.work.weixin.qq.com/api/doc/90001/90143/95327#2.4%20userid%E7%9A%84%E8%BD%AC%E6%8D%A2
+     * @see https://developer.work.weixin.qq.com/document/path/95327#24-userid%E7%9A%84%E8%BD%AC%E6%8D%A2
      *
      * @param array $useridList 获取到的成员ID
      *
@@ -65,5 +59,22 @@ class Client extends BaseClient
     public function batchUseridToOpenUserid(array $useridList)
     {
         return $this->httpPostJson('cgi-bin/batch/userid_to_openuserid', ['userid_list' => $useridList]);
+    }
+
+    /**
+     * 获取访问用户身份
+     * @see https://developer.work.weixin.qq.com/document/path/91437
+     * @param string $code
+     * @return array|object|ResponseInterface|string|Collection
+     * @throws GuzzleException
+     * @throws InvalidConfigException
+     */
+    public function getUser(string $code)
+    {
+        $params = [
+            'code' => $code,
+        ];
+
+        return $this->httpGet('cgi-bin/user/getuserinfo', $params);
     }
 }

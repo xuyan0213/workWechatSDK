@@ -107,7 +107,7 @@ trait HasAttributes
      *
      * @return $this
      */
-    public function set($attribute, $value)
+    public function set(string $attribute, $value)
     {
         $this->setAttribute($attribute, $value);
 
@@ -163,7 +163,7 @@ trait HasAttributes
      * Return all items.
      *
      * @return array
-     *
+     * @throws InvalidArgumentException
      */
     public function all(): array
     {
@@ -227,7 +227,7 @@ trait HasAttributes
     }
 
     /**
-     * Check required attributes.
+     * 检查必填参数
      *
      * @throws InvalidArgumentException
      */
@@ -235,7 +235,7 @@ trait HasAttributes
     {
         foreach ($this->getRequired() as $attribute) {
             if (is_null($this->get($attribute))) {
-                throw new InvalidArgumentException(sprintf('"%s" cannot be empty.', $attribute));
+                throw new InvalidArgumentException(sprintf('"%s" 参数不可以为空', $attribute));
             }
         }
     }

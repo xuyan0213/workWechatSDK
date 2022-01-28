@@ -138,4 +138,8 @@ class ContactWayClient extends BaseClient
         }
         return $this->httpPostJson('cgi-bin/externalcontact/list_contact_way', $data);
     }
+
+
+
+
 }

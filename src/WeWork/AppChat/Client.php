@@ -15,22 +15,6 @@ use WorkWechatSdk\Kernel\Exceptions\InvalidConfigException;
  */
 class Client extends BaseClient
 {
-    /**
-     * 获取群聊会话
-     *
-     * @param string $chatId 群聊ID
-     *
-     * @return array|object|ResponseInterface|string|Collection
-     *
-     * @throws GuzzleException
-     * @throws InvalidConfigException
-     *
-     * @see https://developer.work.weixin.qq.com/document/path/90247
-     */
-    public function get(string $chatId)
-    {
-        return $this->httpGet('cgi-bin/appchat/get', ['chatid' => $chatId]);
-    }
 
     /**
      * 创建群聊会话
@@ -62,6 +46,23 @@ class Client extends BaseClient
     public function update(string $chatId, array $data)
     {
         return $this->httpPostJson('cgi-bin/appchat/update', array_merge(['chatid' => $chatId], $data));
+    }
+
+    /**
+     * 获取群聊会话
+     *
+     * @param string $chatId 群聊ID
+     *
+     * @return array|object|ResponseInterface|string|Collection
+     *
+     * @throws GuzzleException
+     * @throws InvalidConfigException
+     *
+     * @see https://developer.work.weixin.qq.com/document/path/90247
+     */
+    public function get(string $chatId)
+    {
+        return $this->httpGet('cgi-bin/appchat/get', ['chatid' => $chatId]);
     }
 
     /**

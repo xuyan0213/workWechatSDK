@@ -23,18 +23,17 @@ use function WorkWechatSdk\Kernel\Support\str_random;
  */
 class Encryptor
 {
-    public const ERROR_INVALID_SIGNATURE = -40001; // Signature verification failed
-    public const ERROR_PARSE_XML = -40002; // Parse XML failed
-    public const ERROR_CALC_SIGNATURE = -40003; // Calculating the signature failed
-    public const ERROR_INVALID_AES_KEY = -40004; // Invalid AESKey
-    public const ERROR_INVALID_APP_ID = -40005; // Check AppID failed
-    public const ERROR_ENCRYPT_AES = -40006; // AES EncryptionInterface failed
-    public const ERROR_DECRYPT_AES = -40007; // AES decryption failed
-    public const ERROR_INVALID_XML = -40008; // Invalid XML
-    public const ERROR_BASE64_ENCODE = -40009; // Base64 encoding failed
-    public const ERROR_BASE64_DECODE = -40010; // Base64 decoding failed
-    public const ERROR_XML_BUILD = -40011; // XML build failed
-    public const ILLEGAL_BUFFER = -41003; // Illegal buffer
+    public const ERROR_INVALID_SIGNATURE = -40001; // 签名验证错误
+    public const ERROR_PARSE_XML = -40002; // 	xml/json解析失败
+    public const ERROR_CALC_SIGNATURE = -40003; // sha加密生成签名失败
+    public const ERROR_INVALID_AES_KEY = -40004; // AESKey 非法
+    public const ERROR_RECEIVE_ID = -40005; // ReceiveId 校验错误
+    public const ERROR_ENCRYPT_AES = -40006; // AES 加密失败
+    public const ERROR_DECRYPT_AES = -40007; // AES 解密失败
+    public const ILLEGAL_BUFFER = -40008; // 解密后得到的buffer非法
+    public const ERROR_BASE64_ENCODE = -40009; // base64加密失败
+    public const ERROR_BASE64_DECODE = -40010; // base64解密失败
+    public const ERROR_XML_BUILD = -40011; // 生成xml/json失败
 
     /**
      * App id.
@@ -159,7 +158,7 @@ class Encryptor
         $contentLen = unpack('N', substr($content, 0, 4))[1];
 
         if (trim(substr($content, $contentLen + 4)) !== $this->appId) {
-            throw new RuntimeException('Invalid appId.', self::ERROR_INVALID_APP_ID);
+            throw new RuntimeException('Invalid appId.', self::ERROR_RECEIVE_ID);
         }
 
         return substr($content, 4, $contentLen);

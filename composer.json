@@ -8,9 +8,14 @@
       "WorkWechatSdk\\": "src/"
     },
     "files": [
-      "src/Kernel/Support/Helpers.php",
+      "src/Kernel/Support/Helper.php",
       "src/Kernel/Helpers.php"
     ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "WorkWechatSdk\\Tests\\": "tests/"
+    }
   },
   "authors": [
     {
@@ -20,7 +25,7 @@
   ],
   "minimum-stability": "dev",
   "require": {
-    "php": ">=7.2",
+    "php": ">=7.4",
     "guzzlehttp/guzzle": "^6.2 || ^7.0",
     "pimple/pimple": "^3.0",
     "symfony/cache": "^3.3 || ^4.3 || ^5.0||^6.0",
@@ -30,17 +35,46 @@
     "symfony/psr-http-message-bridge": "^0.3 || ^1.0 || ^2.0",
     "easywechat-composer/easywechat-composer": "^1.1",
     "monolog/monolog": "^1.22 || ^2.0",
+    "overtrue/socialite": "^3.2",
     "ext-openssl": "*",
     "ext-json": "*",
     "ext-mbstring": "*",
     "ext-ctype": "*",
     "ext-simplexml": "*",
     "ext-libxml": "*",
-    "ext-curl": "*"
+    "ext-curl": "*",
+    "ext-fileinfo": "*"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^2.15",
+    "brainmaestro/composer-git-hooks": "^2.7",
+    "mikey179/vfsstream": "^1.6",
+    "mockery/mockery": "^1.2.3",
+    "phpstan/phpstan": "^0.12.0",
+    "phpunit/phpunit": "^9.3",
+    "dms/phpunit-arraysubset-asserts": "^0.2.0"
   },
   "config": {
     "allow-plugins": {
       "easywechat-composer/easywechat-composer": true
     }
+  },
+  "extra": {
+    "hooks": {
+      "pre-commit": [
+        "composer test",
+        "composer fix-style"
+      ],
+      "pre-push": [
+        "composer test",
+        "composer fix-style"
+      ]
+    }
+  },
+  "scripts": {
+    "phpstan": "vendor/bin/phpstan analyse",
+    "check-style": "vendor/bin/php-cs-fixer fix --using-cache=no --diff --config=.php_cs --dry-run --ansi",
+    "fix-style": "vendor/bin/php-cs-fixer fix --using-cache=no --config=.php_cs --ansi",
+    "test": "phpunit --colors=always --testdox"
   }
 }

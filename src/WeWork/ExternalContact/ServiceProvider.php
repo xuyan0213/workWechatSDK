@@ -25,14 +25,14 @@ class ServiceProvider implements ServiceProviderInterface
      */
     public function register(Container $app)
     {
-        // 客户管理
-        $app['external_contact'] = function ($app) {
-            return new Client($app);
-        };
 
         // 企业服务人员管理
         $app['contact_way'] = function ($app) {
             return new ContactWayClient($app);
+        };
+        // 客户管理
+        $app['external_contact'] = function ($app) {
+            return new Client($app);
         };
 
         // 客户群管理
@@ -46,18 +46,23 @@ class ServiceProvider implements ServiceProviderInterface
         };
 
         //消息推送
-        $app['external_contact_message'] = function ($app) {
+        $app['group_send'] = function ($app) {
             return new MessageClient($app);
         };
 
         //朋友圈
-        $app['external_contact_moment'] = function ($app) {
+        $app['moment'] = function ($app) {
             return new MomentClient($app);
         };
 
-        $app['external_contact_statistics'] = function ($app) {
+        //统计
+        $app['statistics'] = function ($app) {
             return new StatisticsClient($app);
         };
 
+        //标签
+        $app['external_contact_tag'] = function ($app) {
+            return new TagClient($app);
+        };
     }
 }
