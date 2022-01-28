@@ -46,9 +46,9 @@ class TagClient extends BaseClient
      *
      * @see https://developer.work.weixin.qq.com/document/path/92117#添加企业客户标签
      *
-     * @param array $tags   标签
+     * @param array $tags 标签
      * @param string $groupId 标签组id
-     * @param string $groupName	标签组名称，最长为30个字符
+     * @param string $groupName 标签组名称，最长为30个字符
      * @param array $attributes
      * @return array|Collection|object|ResponseInterface|string
      *
@@ -56,14 +56,14 @@ class TagClient extends BaseClient
      * @throws InvalidConfigException
      */
 
-    public function addCorpTag(array $tags, string $groupId,string $groupName,array $attributes)
+    public function addCorpTag(array $tags, string $groupId, string $groupName, array $attributes)
     {
         $params = [
-            'group_id'=>$groupId,
-            'group_name'=>$groupName,
-            'tag'=>$tags
+            'group_id' => $groupId,
+            'group_name' => $groupName,
+            'tag' => $tags
         ];
-        $params = $attributes ? $params : array_merge($params, $attributes);
+        $params = empty($attributes) ? $params : array_merge($params, $attributes);
         return $this->httpPostJson('cgi-bin/externalcontact/add_corp_tag', $params);
     }
 
@@ -76,26 +76,21 @@ class TagClient extends BaseClient
      * @param string $id
      * @param string|null $name
      * @param int|null $order
-     *
+     * @param int|null $agentId
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws InvalidConfigException
      * @throws GuzzleException
+     * @throws InvalidConfigException
      */
 
-    public function updateCorpTag(string $id, ?string $name = null, ?int $order = null)
+    public function updateCorpTag(string $id, ?string $name = null, ?int $order = null, ?int $agentId = null)
     {
         $params = [
-            "id" => $id
+            "id" => $id,
+            'name' => $name,
+            'order' => $order,
+            'agentid' => $agentId
         ];
-
-        if (!\is_null($name)) {
-            $params['name'] = $name;
-        }
-
-        if (!\is_null($order)) {
-            $params['order'] = $order;
-        }
 
         return $this->httpPostJson('cgi-bin/externalcontact/edit_corp_tag', $params);
     }
@@ -108,18 +103,19 @@ class TagClient extends BaseClient
      *
      * @param array $tagId
      * @param array $groupId
-     *
+     * @param int|null $agentId
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws InvalidConfigException
      * @throws GuzzleException
+     * @throws InvalidConfigException
      */
 
-    public function deleteCorpTag(array $tagId, array $groupId)
+    public function deleteCorpTag(array $tagId, array $groupId, ?int $agentId)
     {
         $params = [
             "tag_id" => $tagId,
             "group_id" => $groupId,
+            'agentid' => $agentId
         ];
 
         return $this->httpPostJson('cgi-bin/externalcontact/del_corp_tag', $params);
