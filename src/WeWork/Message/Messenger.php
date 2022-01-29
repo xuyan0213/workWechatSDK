@@ -19,27 +19,27 @@ class Messenger
     /**
      * @var Message;
      */
-    protected $message;
+    protected Message $message;
 
     /**
      * @var array
      */
-    protected $to = ['touser' => '@all'];
+    protected array $to = ['touser' => '@all'];
 
     /**
      * @var int
      */
-    protected $agentId;
+    protected int $agentId;
 
     /**
      * @var bool
      */
-    protected $secretive = false;
+    protected bool $secretive = false;
 
     /**
      * @var Client
      */
-    protected $client;
+    protected Client $client;
 
     /**
      * MessageBuilder constructor.
@@ -49,6 +49,7 @@ class Messenger
     public function __construct(Client $client)
     {
         $this->client = $client;
+        $this->agentId = 0;
     }
 
     /**
@@ -92,7 +93,7 @@ class Messenger
      *
      * @return Messenger
      */
-    public function toUser($userIds)
+    public function toUser($userIds): Messenger
     {
         return $this->setRecipients($userIds, 'touser');
     }
@@ -102,7 +103,7 @@ class Messenger
      *
      * @return Messenger
      */
-    public function toParty($partyIds)
+    public function toParty($partyIds): Messenger
     {
         return $this->setRecipients($partyIds, 'toparty');
     }
@@ -112,7 +113,7 @@ class Messenger
      *
      * @return Messenger
      */
-    public function toTag($tagIds)
+    public function toTag($tagIds): Messenger
     {
         return $this->setRecipients($tagIds, 'totag');
     }
@@ -176,7 +177,7 @@ class Messenger
             throw new RuntimeException('消息不能为空');
         }
 
-        if (is_null($this->agentId)) {
+        if (empty($this->agentId)) {
             throw new RuntimeException('未找到指定应用ID');
         }
 

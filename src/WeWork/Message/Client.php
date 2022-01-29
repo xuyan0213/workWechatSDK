@@ -10,10 +10,9 @@ use WorkWechatSdk\Kernel\Exceptions\InvalidArgumentException;
 use WorkWechatSdk\Kernel\Exceptions\InvalidConfigException;
 use WorkWechatSdk\Kernel\Messages\Message;
 use WorkWechatSdk\Kernel\Support\Collection;
-use WorkWechatSdk\WeWork\Message\Messenger;
 
 /**
- * Class Client.
+ * 消息推送
  *
  */
 class Client extends BaseClient
@@ -25,12 +24,13 @@ class Client extends BaseClient
      *
      * @throws InvalidArgumentException
      */
-    public function message($message)
+    public function message($message): Messenger
     {
         return (new Messenger($this))->message($message);
     }
 
     /**
+     * 推送消息
      * @param array $message
      *
      * @return ResponseInterface|Collection|array|object|string
