@@ -10,8 +10,6 @@ use WorkWechatSdk\WeWork\ExternalContact\MessageClient;
 use WorkWechatSdk\WeWork\ExternalContact\MomentClient;
 use WorkWechatSdk\WeWork\ExternalContact\StatisticsClient;
 use WorkWechatSdk\WeWork\ExternalContact\TransferCustomerClient;
-use WorkWechatSdk\WeWork\Message\Messenger;
-use WorkWechatSdk\WeWork\MiniProgram\Application as MiniProgram;
 
 /**
  * Application.
@@ -86,15 +84,6 @@ class Application extends ServiceContainer
             'base_uri' => 'https://qyapi.weixin.qq.com/',
         ],
     ];
-
-    /**
-     * @return MiniProgram
-     */
-    public function miniProgram(): MiniProgram
-    {
-        return new MiniProgram($this->getConfig());
-    }
-
     /**
      * @param string $method
      * @param array $arguments

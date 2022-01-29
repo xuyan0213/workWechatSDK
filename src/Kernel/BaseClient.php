@@ -24,11 +24,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LogLevel;
 
-/**
- * Class BaseClient.
- *
- * @author overtrue <i@overtrue.me>
- */
 class BaseClient
 {
     use HasHttpRequests {

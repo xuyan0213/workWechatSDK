@@ -35,7 +35,7 @@ class TestCase extends BaseTestCase
             $name."[{$methods}]",
             [
                 $app ?? \Mockery::mock(ServiceContainer::class),
-                \Mockery::mock(AccessToken::class), ]
+                \Mockery::mock(AccessToken::class)]
         )->shouldAllowMockingProtectedMethods();//允许模拟受保护的方法
         $client->allows()->registerHttpMiddlewares()->andReturnNull();
         return $client;

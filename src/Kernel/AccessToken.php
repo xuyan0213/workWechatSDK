@@ -27,37 +27,37 @@ abstract class AccessToken implements AccessTokenInterface
     /**
      * @var ServiceContainer
      */
-    protected $app;
+    protected ServiceContainer $app;
 
     /**
      * @var string
      */
-    protected $requestMethod = 'GET';
+    protected string $requestMethod = 'GET';
 
     /**
      * @var string
      */
-    protected $endpointToGetToken;
+    protected string $endpointToGetToken;
 
     /**
      * @var string
      */
-    protected $queryName;
+    protected string $queryName;
 
     /**
      * @var array
      */
-    protected $token;
+    protected array $token;
 
     /**
      * @var string
      */
-    protected $tokenKey = 'access_token';
+    protected string $tokenKey = 'access_token';
 
     /**
      * @var string
      */
-    protected $cachePrefix = 'WorkWechatSdk.kernel.access_token.';
+    protected string $cachePrefix = 'WorkWechatSdk.kernel.access_token.';
 
     /**
      * AccessToken constructor.
@@ -97,7 +97,7 @@ abstract class AccessToken implements AccessTokenInterface
      * @throws \Psr\SimpleCache\InvalidArgumentException
      * @throws InvalidConfigException
      * @throws InvalidArgumentException
-     * @throws RuntimeException
+     * @throws RuntimeException|GuzzleException
      */
     public function getToken(bool $refresh = false): array
     {
@@ -127,7 +127,7 @@ abstract class AccessToken implements AccessTokenInterface
      * @return AccessTokenInterface
      *
      * @throws RuntimeException
-     * @throws \Psr\SimpleCache\InvalidArgumentException
+     * @throws \Psr\SimpleCache\InvalidArgumentException|InvalidArgumentException
      */
     public function setToken(string $token, int $lifetime = 7200): AccessTokenInterface
     {
@@ -150,7 +150,7 @@ abstract class AccessToken implements AccessTokenInterface
      * @throws \Psr\SimpleCache\InvalidArgumentException
      * @throws InvalidConfigException
      * @throws InvalidArgumentException
-     * @throws RuntimeException
+     * @throws RuntimeException|GuzzleException
      */
     public function refresh(): AccessTokenInterface
     {
@@ -192,7 +192,7 @@ abstract class AccessToken implements AccessTokenInterface
      * @throws \Psr\SimpleCache\InvalidArgumentException
      * @throws InvalidConfigException
      * @throws InvalidArgumentException
-     * @throws RuntimeException
+     * @throws RuntimeException|GuzzleException
      */
     public function applyToRequest(RequestInterface $request, array $requestOptions = []): RequestInterface
     {
@@ -239,7 +239,7 @@ abstract class AccessToken implements AccessTokenInterface
      * @throws \Psr\SimpleCache\InvalidArgumentException
      * @throws InvalidConfigException
      * @throws InvalidArgumentException
-     * @throws RuntimeException
+     * @throws RuntimeException|GuzzleException
      */
     protected function getQuery(): array
     {
