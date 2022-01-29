@@ -106,7 +106,7 @@ class TagClientTest extends TestCase
     }
 
     /**
-     * 编辑客户企业标签
+     * 给客户打企业标签
      * @return void
      */
     public function testMarkTags()

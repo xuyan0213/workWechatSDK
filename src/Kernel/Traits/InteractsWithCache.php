@@ -9,7 +9,6 @@ use Psr\Cache\CacheItemPoolInterface;
 use Psr\SimpleCache\CacheInterface as SimpleCacheInterface;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Cache\Psr16Cache;
-use Symfony\Component\Cache\Simple\FilesystemCache;
 
 /**
  * Trait InteractsWithCache.
@@ -18,18 +17,18 @@ use Symfony\Component\Cache\Simple\FilesystemCache;
 trait InteractsWithCache
 {
     /**
-     * @var \Psr\SimpleCache\CacheInterface
+     * @var SimpleCacheInterface
      */
     protected $cache;
 
     /**
      * Get cache instance.
      *
-     * @return \Psr\SimpleCache\CacheInterface
+     * @return SimpleCacheInterface
      *
-     * @throws \WorkWechatSdk\Kernel\Exceptions\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
-    public function getCache()
+    public function getCache(): SimpleCacheInterface
     {
         if ($this->cache) {
             return $this->cache;
@@ -39,7 +38,7 @@ trait InteractsWithCache
             $this->setCache($this->app['cache']);
 
             // Fix PHPStan error
-            assert($this->cache instanceof \Psr\SimpleCache\CacheInterface);
+            assert($this->cache instanceof SimpleCacheInterface);
 
             return $this->cache;
         }
@@ -50,11 +49,11 @@ trait InteractsWithCache
     /**
      * Set cache instance.
      *
-     * @param \Psr\SimpleCache\CacheInterface|\Psr\Cache\CacheItemPoolInterface $cache
+     * @param SimpleCacheInterface|CacheItemPoolInterface $cache
      *
      * @return $this
      *
-     * @throws \WorkWechatSdk\Kernel\Exceptions\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function setCache($cache)
     {
@@ -75,12 +74,12 @@ trait InteractsWithCache
     }
 
     /**
-     * @return \Psr\SimpleCache\CacheInterface
+     * @return Psr16Cache|FilesystemCache
      */
     protected function createDefaultCache()
     {
         if ($this->isSymfony43OrHigher()) {
-            return new Psr16Cache(new FilesystemAdapter('easywechat', 1500));
+            return new Psr16Cache(new FilesystemAdapter('workwechat', 1500));
         }
 
         return new FilesystemCache();

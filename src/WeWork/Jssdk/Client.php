@@ -11,6 +11,7 @@ use WorkWechatSdk\Kernel\Exceptions\InvalidConfigException;
 use WorkWechatSdk\Kernel\Exceptions\RuntimeException;
 use WorkWechatSdk\Kernel\ServiceContainer;
 use WorkWechatSdk\Kernel\Support\Collection;
+use WorkWechatSdk\Kernel\Support;
 
 /**
  * JS-SDK
@@ -46,11 +47,10 @@ class Client extends BaseClient
      *
      * @return array|string
      *
-     * @throws InvalidArgumentException
      * @throws InvalidConfigException
      * @throws RuntimeException
      * @throws GuzzleException
-     * @throws \Psr\SimpleCache\InvalidArgumentException
+     * @throws \Psr\SimpleCache\InvalidArgumentException|InvalidArgumentException
      */
     public function getAgentConfigArray(
         array  $apis,
@@ -77,11 +77,10 @@ class Client extends BaseClient
      *
      * @return array|string
      *
-     * @throws InvalidArgumentException
      * @throws InvalidConfigException
      * @throws RuntimeException
      * @throws GuzzleException
-     * @throws \Psr\SimpleCache\InvalidArgumentException
+     * @throws \Psr\SimpleCache\InvalidArgumentException|InvalidArgumentException
      */
     public function buildAgentConfig(
         array  $jsApiList,
@@ -98,6 +97,34 @@ class Client extends BaseClient
         return $json ? json_encode($config) : $config;
     }
 
+    /**
+     * @param  int|string  $agentId
+     * @param  string|null  $url
+     * @param  string|null  $nonce
+     * @param  null  $timestamp
+     *
+     * @return array
+     *
+     * @throws InvalidConfigException
+     * @throws RuntimeException
+     * @throws GuzzleException
+     * @throws \Psr\SimpleCache\InvalidArgumentException|InvalidArgumentException
+     */
+    protected function agentConfigSignature($agentId, string $url = null, string $nonce = null, $timestamp = null): array
+    {
+        $url = $url ?: $this->getUrl();
+        $nonce = $nonce ?: Support\Str::quickRandom(10);
+        $timestamp = $timestamp ?: time();
+
+        return [
+            'corpid' => $this->getAppId(),
+            'agentid' => $agentId,
+            'nonceStr' => $nonce,
+            'timestamp' => $timestamp,
+            'url' => $url,
+            'signature' => $this->getTicketSignature($this->getAgentTicket($agentId)['ticket'], $nonce, $timestamp, $url),
+        ];
+    }
 
     /**
      * Sign the params.
@@ -130,15 +157,13 @@ class Client extends BaseClient
      */
     public function getTicket(bool $refresh = false, string $type = 'config'): array
     {
-        $cacheKey = sprintf('WorkWechatSdk.work.jssdk.ticket.%s.%s', $type, $this->getAppId());
-
+        $cacheKey = sprintf('WorkWechatSdk.jssdk.ticket.%s.%s', $type, $this->getAppId());
         if (!$refresh && $this->getCache()->has($cacheKey)) {
             return $this->getCache()->get($cacheKey);
         }
-
         /** @var array<string, mixed> $result */
         $result = $this->castResponseToType(
-            $this->requestRaw($this->ticketEndpoint, 'GET'),
+            $this->requestRaw($this->ticketEndpoint,'GET'),
             'array'
         );
 
@@ -147,7 +172,6 @@ class Client extends BaseClient
         if (!$this->getCache()->has($cacheKey)) {
             throw new RuntimeException('Failed to cache jssdk ticket.');
         }
-
         return $result;
     }
 
@@ -161,11 +185,11 @@ class Client extends BaseClient
      * @throws InvalidConfigException
      * @throws RuntimeException
      * @throws GuzzleException
-     * @throws \Psr\SimpleCache\InvalidArgumentException
+     * @throws \Psr\SimpleCache\InvalidArgumentException|InvalidArgumentException
      */
-    public function getAgentTicket($agentId, bool $refresh = false, string $type = 'agent_config')
+    public function getAgentTicket(int $agentId, bool $refresh = false, string $type = 'agent_config')
     {
-        $cacheKey = sprintf('WorkWechatSdk.work.jssdk.ticket.%s.%s.%s', $agentId, $type, $this->getAppId());
+        $cacheKey = sprintf('WorkWechatSdk.jssdk.ticket.%s.%s.%s', $agentId, $type, $this->getAppId());
 
         if (!$refresh && $this->getCache()->has($cacheKey)) {
             return $this->getCache()->get($cacheKey);
