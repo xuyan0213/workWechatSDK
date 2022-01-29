@@ -15,11 +15,7 @@ use WorkWechatSdk\Kernel\Exceptions\InvalidArgumentException;
 use WorkWechatSdk\Kernel\Exceptions\RuntimeException;
 use WorkWechatSdk\Kernel\Support\File;
 
-/**
- * Class StreamResponse.
- *
- * @author overtrue <i@overtrue.me>
- */
+
 class StreamResponse extends Response
 {
     /**
@@ -29,8 +25,8 @@ class StreamResponse extends Response
      *
      * @return bool|int
      *
-     * @throws \WorkWechatSdk\Kernel\Exceptions\InvalidArgumentException
-     * @throws \WorkWechatSdk\Kernel\Exceptions\RuntimeException
+     * @throws InvalidArgumentException
+     * @throws RuntimeException
      */
     public function save(string $directory, string $filename = '', bool $appendSuffix = true)
     {
@@ -76,8 +72,8 @@ class StreamResponse extends Response
      *
      * @return bool|int
      *
-     * @throws \WorkWechatSdk\Kernel\Exceptions\InvalidArgumentException
-     * @throws \WorkWechatSdk\Kernel\Exceptions\RuntimeException
+     * @throws InvalidArgumentException
+     * @throws RuntimeException
      */
     public function saveAs(string $directory, string $filename, bool $appendSuffix = true)
     {
