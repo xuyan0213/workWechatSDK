@@ -7,10 +7,7 @@ use WorkWechatSdk\Kernel\Log\LogManager;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 
-/**
- * Class LoggingServiceProvider.
- *
- */
+
 class LogServiceProvider implements ServiceProviderInterface
 {
     /**
@@ -23,8 +20,8 @@ class LogServiceProvider implements ServiceProviderInterface
      */
     public function register(Container $pimple)
     {
-        !isset($pimple['log']) && $pimple['log'] = function ($app) {
-            $config = $app['config']->get('log');
+        $pimple['logger'] = $pimple['log'] = function ($app) {
+            $config = $this->formatLogConfig($app);
 
             if (!empty($config)) {
                 $app->rebind('config', $app['config']->merge($config));
@@ -32,7 +29,39 @@ class LogServiceProvider implements ServiceProviderInterface
 
             return new LogManager($app);
         };
+    }
 
-        !isset($pimple['logger']) && $pimple['logger'] = $pimple['log'];
+    public function formatLogConfig($app)
+    {
+        if (!empty($app['config']->get('log.channels'))) {
+            return $app['config']->get('log');
+        }
+
+        if (empty($app['config']->get('log'))) {
+            return [
+                'log' => [
+                    'default' => 'errorlog',
+                    'channels' => [
+                        'errorlog' => [
+                            'driver' => 'errorlog',
+                            'level' => 'debug',
+                        ],
+                    ],
+                ],
+            ];
+        }
+
+        return [
+            'log' => [
+                'default' => 'single',
+                'channels' => [
+                    'single' => [
+                        'driver' => 'single',
+                        'path' => $app['config']->get('log.file') ?: \sys_get_temp_dir().'/logs/work_wechat.log',
+                        'level' => $app['config']->get('log.level', 'debug'),
+                    ],
+                ],
+            ],
+        ];
     }
 }

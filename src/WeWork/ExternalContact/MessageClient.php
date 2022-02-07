@@ -87,7 +87,7 @@ class MessageClient extends BaseClient
      * @throws InvalidConfigException
      * @throws GuzzleException
      */
-    public function getGroupmsgListV2(string $chatType, int $startTime, int $endTime, ?string $creator = null, ?int $filterType = null, ?int $limit = null, ?string $cursor = null)
+    public function getGroupmsgListV2(string $chatType, int $startTime, int $endTime, string $creator = null, int $filterType = null, int $limit = null, string $cursor = null)
     {
         $data = [
             'chat_type' => $chatType,
@@ -117,7 +117,7 @@ class MessageClient extends BaseClient
      *
      * @throws InvalidConfigException|GuzzleException
      */
-    public function getGroupmsgTask(string $msgId, ?int $limit = null, ?string $cursor = null)
+    public function getGroupmsgTask(string $msgId, int $limit = null, string $cursor = null)
     {
         $data = [
             'msgid' => $msgId,
@@ -145,7 +145,7 @@ class MessageClient extends BaseClient
      * @throws InvalidConfigException
      * @throws GuzzleException
      */
-    public function getGroupmsgSendResult(string $msgId, string $userid, ?int $limit = null, ?string $cursor = null)
+    public function getGroupmsgSendResult(string $msgId, string $userid, int $limit = null, string $cursor = null)
     {
         $data = [
             'msgid' => $msgId,

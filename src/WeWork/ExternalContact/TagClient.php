@@ -83,7 +83,7 @@ class TagClient extends BaseClient
      * @throws InvalidConfigException
      */
 
-    public function updateCorpTag(string $id, ?string $name = null, ?int $order = null, ?int $agentId = null)
+    public function updateCorpTag(string $id, string $name = null, int $order = null, int $agentId = null)
     {
         $params = [
             "id" => $id,
@@ -110,7 +110,7 @@ class TagClient extends BaseClient
      * @throws InvalidConfigException
      */
 
-    public function deleteCorpTag(array $tagId, array $groupId, ?int $agentId)
+    public function deleteCorpTag(array $tagId, array $groupId, int $agentId)
     {
         $params = [
             "tag_id" => $tagId,

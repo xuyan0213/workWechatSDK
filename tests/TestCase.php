@@ -2,25 +2,22 @@
 
 namespace WorkWechatSdk\Tests;
 
-use Mockery;
 use WorkWechatSdk\Kernel\AccessToken;
 use WorkWechatSdk\Kernel\ServiceContainer;
 use PHPUnit\Framework\TestCase as BaseTestCase;
-use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 
 /**
  * class TestCase.
  */
 class TestCase extends BaseTestCase
 {
-    use ArraySubsetAsserts;
 
     /**
-     * 创建API Client模拟对象
+     * Create API Client mock object.
      *
      * @param string                                   $name
      * @param array|string                             $methods
-     * @param ServiceContainer|null $app
+     * @param \WorkWechatSdk\Kernel\ServiceContainer|null $app
      *
      * @return \Mockery\Mock
      */
@@ -31,20 +28,19 @@ class TestCase extends BaseTestCase
             'request', 'requestRaw', 'requestArray', 'registerMiddlewares',
         ], (array) $methods));
 
-        $client = \Mockery::mock(
-            $name."[{$methods}]",
-            [
+        $client = \Mockery::mock($name."[{$methods}]", [
                 $app ?? \Mockery::mock(ServiceContainer::class),
-                \Mockery::mock(AccessToken::class)]
-        )->shouldAllowMockingProtectedMethods();//允许模拟受保护的方法
+                \Mockery::mock(AccessToken::class), ]
+        )->shouldAllowMockingProtectedMethods();
         $client->allows()->registerHttpMiddlewares()->andReturnNull();
+
         return $client;
     }
 
     /**
-     * 分解测试用例
+     * Tear down the test case.
      */
-    public function tearDown(): void
+    public function tearDown()
     {
         $this->finish();
         parent::tearDown();
@@ -55,7 +51,7 @@ class TestCase extends BaseTestCase
     }
 
     /**
-     * 销毁代码
+     * Run extra tear down code.
      */
     protected function finish()
     {

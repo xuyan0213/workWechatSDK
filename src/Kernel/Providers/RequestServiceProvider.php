@@ -1,5 +1,13 @@
 <?php
 
+/*
+ * This file is part of the overtrue/wechat.
+ *
+ * (c) overtrue <i@overtrue.me>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace WorkWechatSdk\Kernel\Providers;
 
@@ -24,7 +32,7 @@ class RequestServiceProvider implements ServiceProviderInterface
      */
     public function register(Container $pimple)
     {
-        !isset($pimple['request']) && $pimple['request'] = function () {
+        $pimple['request'] = function () {
             return Request::createFromGlobals();
         };
     }

@@ -1,57 +1,90 @@
 <?php
 
-namespace WorkWechatSdk\Tests\WeWork\Message;
+namespace WorkWechatSdk\Tests\WeWork\MsgAudit;
 
 
 use WorkWechatSdk\Tests\TestCase;
-use WorkWechatSdk\WeWork\Message\Client;
-use WorkWechatSdk\WeWork\Message\Messenger;
+use WorkWechatSdk\WeWork\MsgAudit\Client;
 
 
 /**
- * 消息推送
+ * 会话内容存档
  */
 class ClientTest extends TestCase
 {
 
     /**
+     * 获取会话内容存档开启成员列表
      * @return void
      */
-    public function testMessage()
+    public function testGetPermitUsers()
     {
         $client = $this->mockApiClient(Client::class);
-
-        $this->assertInstanceOf(Messenger::class, $client->message('hello'));
+        $client->expects()->httpPostJson('cgi-bin/msgaudit/get_permit_user_list', [])->andReturn('mock-result');
+        $this->assertSame('mock-result', $client->getPermitUsers());
     }
 
-    /**
-     * 推送消息
-     * @return void
-     */
-    public function testSend()
-    {
-        $client = $this->mockApiClient(Client::class);
-        $client->expects()->httpPostJson('cgi-bin/message/send', ['foo' => 'bar'])->andReturn('mock-result');
-
-        $this->assertSame('mock-result', $client->send(['foo' => 'bar']));
-    }
 
     /**
-     * 更新任务卡片消息状态
+     * 获取会话同意情况(单聊)
      * @return void
      */
-    public function testUpdateTaskCard()
+    public function testGetSingleAgreeStatus()
     {
         $client = $this->mockApiClient(Client::class);
         $params = [
-            'userids' => ['userid1','userid2'],
-            'agentid' => 1,
-            'task_id' => 'taskid1',
-            'replace_name' => '已收到'
+            'info' => [[
+                'userid' => 'aaa',
+                'exteranalopenid' => 'ww1'
+            ],
+                [
+                    'userid' => 'bbb',
+                    'exteranalopenid' => 'ww2'
+                ],
+            ]
+        ];
+        $client->expects()->httpPostJson('cgi-bin/msgaudit/check_single_agree', $params)->andReturn('mock-result');
+
+        $this->assertSame('mock-result', $client->getSingleAgreeStatus([[
+            'userid' => 'aaa',
+            'exteranalopenid' => 'ww1'
+        ],
+            [
+                'userid' => 'bbb',
+                'exteranalopenid' => 'ww2'
+            ],
+        ]));
+    }
+
+    /**
+     * 获取会话同意情况(群聊)
+     * @return void
+     */
+    public function testGetRoomAgreeStatus()
+    {
+        $client = $this->mockApiClient(Client::class);
+        $params = [
+            'roomid' => 'qwe'
         ];
 
-        $client->expects()->httpPostJson('cgi-bin/message/update_taskcard', $params)->andReturn('mock-result');
+        $client->expects()->httpPostJson('cgi-bin/msgaudit/check_room_agree', $params)->andReturn('mock-result');
 
-        $this->assertSame('mock-result', $client->updateTaskcard(['userid1','userid2'], 1, 'taskid1', '已收到'));
+        $this->assertSame('mock-result', $client->getRoomAgreeStatus('qwe'));
+    }
+
+    /**
+     * 获取会话内容存档内部群信息
+     * @return void
+     */
+    public function testGetRoom()
+    {
+        $client = $this->mockApiClient(Client::class);
+        $params = [
+            'roomid' => 'qwe'
+        ];
+
+        $client->expects()->httpPostJson('cgi-bin/msgaudit/groupchat/get', $params)->andReturn('mock-result');
+
+        $this->assertSame('mock-result', $client->getRoom('qwe'));
     }
 }

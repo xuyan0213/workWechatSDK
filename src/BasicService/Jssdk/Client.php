@@ -18,14 +18,14 @@ class Client extends BaseClient
     /**
      * @var string
      */
-    protected string $ticketEndpoint = 'cgi-bin/ticket/getticket';
+    protected  $ticketEndpoint = 'cgi-bin/ticket/getticket';
 
     /**
      * Current URI.
      *
      * @var string
      */
-    protected string $url;
+    protected  $url;
 
     /**
      * Get config json for jsapi.

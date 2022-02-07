@@ -30,7 +30,6 @@ use Symfony\Component\HttpFoundation\Response;
  * 1. url 里的 signature 只是将 token+nonce+timestamp 得到的签名，只是用于验证当前请求的，在公众号环境下一直有
  * 2. 企业号消息发送时是没有的，因为固定为完全模式，所以 url 里不会存在 signature, 只有 msg_signature 用于解密消息的
  *
- * @author overtrue <i@overtrue.me>
  */
 class ServerGuard
 {
@@ -45,12 +44,12 @@ class ServerGuard
     /**
      * Empty string.
      */
-    public const SUCCESS_EMPTY_RESPONSE = 'success';
+    const SUCCESS_EMPTY_RESPONSE = 'success';
 
     /**
      * @var array
      */
-    public const MESSAGE_TYPE_MAPPING = [
+    const MESSAGE_TYPE_MAPPING = [
         'text' => Message::TEXT,
         'image' => Message::IMAGE,
         'voice' => Message::VOICE,

@@ -117,7 +117,7 @@ class Client extends BaseClient
      * @throws InvalidConfigException
      * @throws GuzzleException
      */
-    public function unionidToExternalUserid(?string $unionid = null, ?string $openid = null)
+    public function unionidToExternalUserid(string $unionid = null, string $openid = null)
     {
         return $this->httpPostJson(
             'cgi-bin/externalcontact/unionid_to_external_userid',

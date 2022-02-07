@@ -1,14 +1,20 @@
 <?php
 
+/*
+ * This file is part of the overtrue/wechat.
+ *
+ * (c) overtrue <i@overtrue.me>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace WorkWechatSdk\Kernel;
 
 use GuzzleHttp\Client;
 use Monolog\Logger;
-use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\HttpFoundation\Request;
 use WorkWechatSdk\Kernel\Providers\ConfigServiceProvider;
-use WorkWechatSdk\Kernel\Providers\EventDispatcherServiceProvider;
 use WorkWechatSdk\Kernel\Providers\ExtensionServiceProvider;
 use WorkWechatSdk\Kernel\Providers\HttpClientServiceProvider;
 use WorkWechatSdk\Kernel\Providers\LogServiceProvider;
@@ -17,13 +23,10 @@ use EasyWeChatComposer\Traits\WithAggregator;
 use Pimple\Container;
 
 /**
- * Class ServiceContainer.
- *
  * @property Config $config
  * @property Request $request
- * @property Client $http_client
- * @property Logger $logger
- * @property EventDispatcher $events
+ * @property Client                        $http_client
+ * @property Logger                           $logger
  */
 class ServiceContainer extends Container
 {
@@ -32,49 +35,47 @@ class ServiceContainer extends Container
     /**
      * @var string
      */
-    protected  $id;
+    protected $id;
 
     /**
      * @var array
      */
-    protected array $providers = [];
+    protected $providers = [];
 
     /**
      * @var array
      */
-    protected array $defaultConfig = [];
+    protected $defaultConfig = [];
 
     /**
      * @var array
      */
-    protected array $userConfig = [];
+    protected $userConfig = [];
 
     /**
      * Constructor.
      *
-     * @param array $config
-     * @param array $prepends
+     * @param array       $config
+     * @param array       $prepends
      * @param string|null $id
      */
     public function __construct(array $config = [], array $prepends = [], string $id = null)
     {
-        $this->userConfig = $config;
+        $this->registerProviders($this->getProviders());
 
         parent::__construct($prepends);
 
-        $this->registerProviders($this->getProviders());
+        $this->userConfig = $config;
 
         $this->id = $id;
 
         $this->aggregate();
-
-        $this->events->dispatch(new Events\ApplicationInitialized($this));
     }
 
     /**
      * @return string
      */
-    public function getId(): string
+    public function getId()
     {
         return $this->id ?? $this->id = md5(json_encode($this->userConfig));
     }
@@ -82,7 +83,7 @@ class ServiceContainer extends Container
     /**
      * @return array
      */
-    public function getConfig(): array
+    public function getConfig()
     {
         $base = [
             // http://docs.guzzlephp.org/en/stable/request-options.html
@@ -100,24 +101,22 @@ class ServiceContainer extends Container
      *
      * @return array
      */
-    public function getProviders(): array
+    public function getProviders()
     {
         return array_merge([
-            ConfigServiceProvider::class,               //配置服务提供商
-            LogServiceProvider::class,                  //日志服务提供货商
-            RequestServiceProvider::class,              //请求服务提供商
-            HttpClientServiceProvider::class,           //Http客户端服务提供商
-            ExtensionServiceProvider::class,            //扩展服务提供商
-            EventDispatcherServiceProvider::class,      //事件调度服务提供商
+            ConfigServiceProvider::class,
+            LogServiceProvider::class,
+            RequestServiceProvider::class,
+            HttpClientServiceProvider::class,
+            ExtensionServiceProvider::class,
         ], $this->providers);
     }
 
     /**
-     * 重新设置/绑定 服务或参数
      * @param string $id
-     * @param mixed $value
+     * @param mixed  $value
      */
-    public function rebind(string $id, $value)
+    public function rebind($id, $value)
     {
         $this->offsetUnset($id);
         $this->offsetSet($id, $value);
@@ -130,7 +129,7 @@ class ServiceContainer extends Container
      *
      * @return mixed
      */
-    public function __get(string $id)
+    public function __get($id)
     {
         if ($this->shouldDelegate($id)) {
             return $this->delegateTo($id);
@@ -143,9 +142,9 @@ class ServiceContainer extends Container
      * Magic set access.
      *
      * @param string $id
-     * @param mixed $value
+     * @param mixed  $value
      */
-    public function __set(string $id, $value)
+    public function __set($id, $value)
     {
         $this->offsetSet($id, $value);
     }

@@ -58,7 +58,7 @@ class Application extends ServiceContainer
     /**
      * @var array
      */
-    protected array $providers = [
+    protected $providers = [
         Agent\ServiceProvider::class,           //应用模块
         AppChat\ServiceProvider::class,           //应用模块
         Auth\ServiceProvider::class,
@@ -78,7 +78,7 @@ class Application extends ServiceContainer
     /**
      * @var array
      */
-    protected array $defaultConfig = [
+    protected $defaultConfig = [
         // http://docs.guzzlephp.org/en/stable/request-options.html
         'http' => [
             'base_uri' => 'https://qyapi.weixin.qq.com/',

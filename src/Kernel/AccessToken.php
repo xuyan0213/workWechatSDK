@@ -27,37 +27,37 @@ abstract class AccessToken implements AccessTokenInterface
     /**
      * @var ServiceContainer
      */
-    protected ServiceContainer $app;
+    protected  $app;
 
     /**
      * @var string
      */
-    protected string $requestMethod = 'GET';
+    protected  $requestMethod = 'GET';
 
     /**
      * @var string
      */
-    protected string $endpointToGetToken;
+    protected  $endpointToGetToken;
 
     /**
      * @var string
      */
-    protected string $queryName;
+    protected  $queryName;
 
     /**
      * @var array
      */
-    protected array $token;
+    protected  $token;
 
     /**
      * @var string
      */
-    protected string $tokenKey = 'access_token';
+    protected  $tokenKey = 'access_token';
 
     /**
      * @var string
      */
-    protected string $cachePrefix = 'WorkWechatSdk.kernel.access_token.';
+    protected  $cachePrefix = 'WorkWechatSdk.kernel.access_token.';
 
     /**
      * AccessToken constructor.
@@ -81,7 +81,7 @@ abstract class AccessToken implements AccessTokenInterface
      * @throws \Psr\SimpleCache\InvalidArgumentException
      * @throws InvalidConfigException
      * @throws InvalidArgumentException
-     * @throws RuntimeException
+     * @throws RuntimeException|GuzzleException
      */
     public function getRefreshedToken(): array
     {

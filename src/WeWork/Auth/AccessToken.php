@@ -13,12 +13,12 @@ class AccessToken extends BaseAccessToken
     /**
      * @var string
      */
-    protected string $endpointToGetToken = 'cgi-bin/gettoken';
+    protected  $endpointToGetToken = 'cgi-bin/gettoken';
 
     /**
      * @var int
      */
-    protected int $safeSeconds = 0;
+    protected  $safeSeconds = 0;
 
     /**
      * 通过secret获取accessToken

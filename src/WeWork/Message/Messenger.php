@@ -19,27 +19,27 @@ class Messenger
     /**
      * @var Message;
      */
-    protected Message $message;
+    protected $message;
 
     /**
      * @var array
      */
-    protected array $to = ['touser' => '@all'];
+    protected $to = ['touser' => '@all'];
 
     /**
      * @var int
      */
-    protected int $agentId;
+    protected $agentId;
 
     /**
      * @var bool
      */
-    protected bool $secretive = false;
+    protected $secretive = false;
 
     /**
      * @var Client
      */
-    protected Client $client;
+    protected $client;
 
     /**
      * MessageBuilder constructor.

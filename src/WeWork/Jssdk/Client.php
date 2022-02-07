@@ -18,7 +18,7 @@ use WorkWechatSdk\Kernel\Support;
  */
 class Client extends BaseClient
 {
-    protected string $ticketEndpoint = '/cgi-bin/get_jsapi_ticket';
+    protected  $ticketEndpoint = '/cgi-bin/get_jsapi_ticket';
 
     public function __construct(ServiceContainer $app, AccessTokenInterface $accessToken = null)
     {

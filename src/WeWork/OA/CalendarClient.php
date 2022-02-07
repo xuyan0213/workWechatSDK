@@ -10,7 +10,7 @@ use WorkWechatSdk\Kernel\Exceptions\InvalidConfigException;
 use WorkWechatSdk\Kernel\Support\Collection;
 
 /**
- * 效率工具 日程模块
+ * 效率工具 日历模块
  *
  */
 class CalendarClient extends BaseClient
