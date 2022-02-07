@@ -7,20 +7,10 @@ use EasyWeChatComposer\Extension;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 
-/**
- * Class ExtensionServiceProvider.
- *
- * @author overtrue <i@overtrue.me>
- */
 class ExtensionServiceProvider implements ServiceProviderInterface
 {
     /**
-     * Registers services on the given container.
-     *
-     * This method should only be used to configure services and parameters.
-     * It should not get services.
-     *
-     * @param Container $pimple A container instance
+     * @param Container $pimple 容器实例
      */
     public function register(Container $pimple)
     {
