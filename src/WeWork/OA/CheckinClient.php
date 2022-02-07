@@ -163,16 +163,21 @@ class CheckinClient extends BaseClient
      *
      * @sse https://developer.work.weixin.qq.com/document/path/93385
      *
-     * @param array $params
-     *
+     * @param string $groupId 打卡规则的规则id，可通过“获取打卡规则”、“获取打卡数据”、“获取打卡人员排班信息”等相关接口获取
+     * @param array $items 排班表信息
+     * @param int $month 排班表月份，格式为年月，如202011
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws InvalidConfigException
      * @throws GuzzleException
-     *
+     * @throws InvalidConfigException
      */
-    public function setCheckinSchedus(array $params)
+    public function setCheckinSchedus(string $groupId,array $items,int $month)
     {
+        $params = [
+            'groupid' => $groupId,
+            'items' => $items,
+            'yearmonth'=>$month
+        ];
         return $this->httpPostJson('cgi-bin/checkin/setcheckinschedulist', $params);
     }
 
@@ -203,10 +208,10 @@ class CheckinClient extends BaseClient
     /**
      * 获取设备打卡数据
      * @see https://developer.work.weixin.qq.com/document/path/94126
-     * @param int $startTime
-     * @param int $endTime
-     * @param array $useridList
-     * @param int $filterType
+     * @param int $startTime 	Unix时间戳，当filter_type为1时，表示打卡的开始时间；当filter_type为2时，表示设备上传记录的开始时间
+     * @param int $endTime	Unix时间戳，当filter_type为1时，表示打卡的结束时间；当filter_type为2时，表示设备上传记录的结束时间
+     * @param array $useridList 需要获取打卡记录的用户列表
+     * @param int $filterType 	过滤类型，1表示按打卡时间过滤，2表示按设备上传打卡记录的时间过滤，默认值是1
      * @return array|object|ResponseInterface|string|Collection
      * @throws GuzzleException
      * @throws InvalidConfigException
