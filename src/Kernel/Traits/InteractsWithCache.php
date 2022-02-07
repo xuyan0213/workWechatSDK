@@ -3,6 +3,7 @@
 
 namespace WorkWechatSdk\Kernel\Traits;
 
+use Symfony\Component\Cache\Simple\FilesystemCache;
 use WorkWechatSdk\Kernel\Exceptions\InvalidArgumentException;
 use WorkWechatSdk\Kernel\ServiceContainer;
 use Psr\Cache\CacheItemPoolInterface;
@@ -24,11 +25,11 @@ trait InteractsWithCache
     /**
      * Get cache instance.
      *
-     * @return SimpleCacheInterface
+     * @return SimpleCacheInterface|Psr16Cache|FilesystemCache
      *
      * @throws InvalidArgumentException
      */
-    public function getCache(): SimpleCacheInterface
+    public function getCache()
     {
         if ($this->cache) {
             return $this->cache;

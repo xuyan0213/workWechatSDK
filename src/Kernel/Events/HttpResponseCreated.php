@@ -10,7 +10,7 @@ class HttpResponseCreated
     /**
      * @var ResponseInterface
      */
-    public ResponseInterface $response;
+    public $response;
 
     /**
      * @param ResponseInterface $response

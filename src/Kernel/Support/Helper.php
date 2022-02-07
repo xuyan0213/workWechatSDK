@@ -5,6 +5,7 @@ namespace WorkWechatSdk\Kernel\Support;
 
 
 use Closure;
+use WorkWechatSdk\Kernel\Exceptions\RuntimeException;
 
 /**
  * 生成签名
@@ -100,6 +101,7 @@ function currentUrl(): string
  * @param string $length
  *
  * @return string
+ * @throws RuntimeException
  */
 function strRandom(string $length): string
 {

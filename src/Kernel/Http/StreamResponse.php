@@ -34,10 +34,12 @@ class StreamResponse extends Response
 
         $directory = rtrim($directory, '/');
 
+        //判断是否是目录
         if (!is_dir($directory)) {
-            mkdir($directory, 0755, true); // @codeCoverageIgnore
+            mkdir($directory, 0755, true);
         }
 
+        //判断是否可写
         if (!is_writable($directory)) {
             throw new InvalidArgumentException(sprintf("'%s' is not writable.", $directory));
         }

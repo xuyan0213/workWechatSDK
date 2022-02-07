@@ -10,7 +10,7 @@ class AccessTokenRefreshed
     /**
      * @var AccessToken
      */
-    public AccessToken $accessToken;
+    public $accessToken;
 
     /**
      * @param AccessToken $accessToken

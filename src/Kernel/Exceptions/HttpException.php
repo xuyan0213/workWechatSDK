@@ -7,7 +7,7 @@ use WorkWechatSdk\Kernel\Support\Collection;
 use Psr\Http\Message\ResponseInterface;
 
 /**
- * Class HttpException.
+ * Http异常
  *
  */
 class HttpException extends Exception

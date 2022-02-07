@@ -143,7 +143,7 @@ class XML
     }
 
     /**
-     * Delete invalid characters in XML.
+     * 清除XML中的无效字符
      *
      * @see https://www.w3.org/TR/2008/REC-xml-20081126/#charsets - XML charset range
      * @see http://php.net/manual/en/regexp.reference.escape.php - escape in UTF-8 mode

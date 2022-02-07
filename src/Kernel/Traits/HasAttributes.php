@@ -90,7 +90,7 @@ trait HasAttributes
      *
      * @return $this
      */
-    public function with($attribute, $value)
+    public function with(string $attribute, $value)
     {
         $this->snakeAble && $attribute = Str::snake($attribute);
 

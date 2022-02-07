@@ -54,7 +54,7 @@ class Str
      *
      * @return string
      *
-     * @throws \WorkWechatSdk\Kernel\Exceptions\RuntimeException
+     * @throws RuntimeException
      */
     public static function random(int $length = 16): string
     {
@@ -109,7 +109,7 @@ class Str
      *
      * @return string
      */
-    public static function quickRandom($length = 16): string
+    public static function quickRandom(int $length = 16): string
     {
         $pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 

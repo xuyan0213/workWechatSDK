@@ -14,11 +14,13 @@ namespace WorkWechatSdk\Kernel;
 use WorkWechatSdk\Kernel\Contracts\MessageInterface;
 use WorkWechatSdk\Kernel\Exceptions\BadRequestException;
 use WorkWechatSdk\Kernel\Exceptions\InvalidArgumentException;
+use WorkWechatSdk\Kernel\Exceptions\InvalidConfigException;
 use WorkWechatSdk\Kernel\Messages\Message;
 use WorkWechatSdk\Kernel\Messages\News;
 use WorkWechatSdk\Kernel\Messages\NewsItem;
 use WorkWechatSdk\Kernel\Messages\Raw as RawMessage;
 use WorkWechatSdk\Kernel\Messages\Text;
+use WorkWechatSdk\Kernel\Support\Collection;
 use WorkWechatSdk\Kernel\Support\XML;
 use WorkWechatSdk\Kernel\Traits\Observable;
 use WorkWechatSdk\Kernel\Traits\ResponseCastable;
@@ -65,7 +67,7 @@ class ServerGuard
     ];
 
     /**
-     * @var \WorkWechatSdk\Kernel\ServiceContainer
+     * @var ServiceContainer
      */
     protected $app;
 
@@ -74,7 +76,7 @@ class ServerGuard
      *
      * @codeCoverageIgnore
      *
-     * @param \WorkWechatSdk\Kernel\ServiceContainer $app
+     * @param ServiceContainer $app
      */
     public function __construct(ServiceContainer $app)
     {
@@ -91,8 +93,8 @@ class ServerGuard
      * @return Response
      *
      * @throws BadRequestException
-     * @throws \WorkWechatSdk\Kernel\Exceptions\InvalidArgumentException
-     * @throws \WorkWechatSdk\Kernel\Exceptions\InvalidConfigException
+     * @throws InvalidArgumentException
+     * @throws InvalidConfigException
      */
     public function serve(): Response
     {
@@ -113,7 +115,7 @@ class ServerGuard
     /**
      * @return $this
      *
-     * @throws \WorkWechatSdk\Kernel\Exceptions\BadRequestException
+     * @throws BadRequestException
      */
     public function validate()
     {
@@ -147,11 +149,11 @@ class ServerGuard
     /**
      * Get request message.
      *
-     * @return array|\WorkWechatSdk\Kernel\Support\Collection|object|string
+     * @return array|Collection|object|string
      *
      * @throws BadRequestException
-     * @throws \WorkWechatSdk\Kernel\Exceptions\InvalidArgumentException
-     * @throws \WorkWechatSdk\Kernel\Exceptions\InvalidConfigException
+     * @throws InvalidArgumentException
+     * @throws InvalidConfigException
      */
     public function getMessage()
     {
@@ -180,11 +182,11 @@ class ServerGuard
     /**
      * Resolve server request and return the response.
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      *
-     * @throws \WorkWechatSdk\Kernel\Exceptions\BadRequestException
-     * @throws \WorkWechatSdk\Kernel\Exceptions\InvalidArgumentException
-     * @throws \WorkWechatSdk\Kernel\Exceptions\InvalidConfigException
+     * @throws BadRequestException
+     * @throws InvalidArgumentException
+     * @throws InvalidConfigException
      */
     protected function resolve(): Response
     {
@@ -216,11 +218,11 @@ class ServerGuard
     /**
      * @param string                                                   $to
      * @param string                                                   $from
-     * @param \WorkWechatSdk\Kernel\Contracts\MessageInterface|string|int $message
+     * @param MessageInterface|string|int $message
      *
      * @return string
      *
-     * @throws \WorkWechatSdk\Kernel\Exceptions\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function buildResponse(string $to, string $from, $message)
     {
@@ -252,9 +254,9 @@ class ServerGuard
      *
      * @return array
      *
-     * @throws \WorkWechatSdk\Kernel\Exceptions\BadRequestException
-     * @throws \WorkWechatSdk\Kernel\Exceptions\InvalidArgumentException
-     * @throws \WorkWechatSdk\Kernel\Exceptions\InvalidConfigException
+     * @throws BadRequestException
+     * @throws InvalidArgumentException
+     * @throws InvalidConfigException
      */
     protected function handleRequest(): array
     {
@@ -276,7 +278,7 @@ class ServerGuard
      *
      * @param string                                        $to
      * @param string                                        $from
-     * @param \WorkWechatSdk\Kernel\Contracts\MessageInterface $message
+     * @param MessageInterface $message
      *
      * @return string
      */
@@ -318,7 +320,7 @@ class ServerGuard
      *
      * @return array
      *
-     * @throws \WorkWechatSdk\Kernel\Exceptions\BadRequestException
+     * @throws BadRequestException
      */
     protected function parseMessage($content)
     {

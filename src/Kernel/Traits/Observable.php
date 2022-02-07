@@ -1,13 +1,5 @@
 <?php
 
-/*
- * This file is part of the overtrue/wechat.
- *
- * (c) overtrue <i@overtrue.me>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
 
 namespace WorkWechatSdk\Kernel\Traits;
 
@@ -20,22 +12,17 @@ use WorkWechatSdk\Kernel\Decorators\TerminateResult;
 use WorkWechatSdk\Kernel\Exceptions\InvalidArgumentException;
 use WorkWechatSdk\Kernel\ServiceContainer;
 
-/**
- * Trait Observable.
- *
- * @author overtrue <i@overtrue.me>
- */
 trait Observable
 {
     /**
      * @var array
      */
-    protected array $handlers = [];
+    protected $handlers = [];
 
     /**
      * @var array
      */
-    protected array $clauses = [];
+    protected $clauses = [];
 
     /**
      * @param Closure|EventHandlerInterface|callable|string $handler
@@ -44,7 +31,6 @@ trait Observable
      * @return Clause
      *
      * @throws InvalidArgumentException
-     * @throws ReflectionException
      */
     public function push($handler, $condition = '*'): Clause
     {
@@ -78,7 +64,6 @@ trait Observable
      * @return Clause
      *
      * @throws InvalidArgumentException
-     * @throws ReflectionException
      */
     public function unshift($handler, $condition = '*'): Clause
     {
@@ -100,7 +85,6 @@ trait Observable
      * @return Clause
      *
      * @throws InvalidArgumentException
-     * @throws ReflectionException
      */
     public function observe(string $condition, $handler): Clause
     {
@@ -114,7 +98,6 @@ trait Observable
      * @return Clause
      *
      * @throws InvalidArgumentException
-     * @throws ReflectionException
      */
     public function on(string $condition, $handler): Clause
     {

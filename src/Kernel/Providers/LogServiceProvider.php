@@ -11,12 +11,7 @@ use Pimple\ServiceProviderInterface;
 class LogServiceProvider implements ServiceProviderInterface
 {
     /**
-     * Registers services on the given container.
-     *
-     * This method should only be used to configure services and parameters.
-     * It should not get services.
-     *
-     * @param Container $pimple A container instance
+     * @param Container $pimple 容器实例
      */
     public function register(Container $pimple)
     {
@@ -31,6 +26,11 @@ class LogServiceProvider implements ServiceProviderInterface
         };
     }
 
+    /**
+     * 格式化日志配置
+     * @param $app
+     * @return array[]
+     */
     public function formatLogConfig($app)
     {
         if (!empty($app['config']->get('log.channels'))) {

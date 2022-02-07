@@ -19,7 +19,7 @@ class ServerGuardResponseCreated
     /**
      * @var Response
      */
-    public Response $response;
+    public $response;
 
     /**
      * @param Response $response

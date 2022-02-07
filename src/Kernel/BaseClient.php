@@ -1,14 +1,5 @@
 <?php
 
-/*
- * This file is part of the overtrue/wechat.
- *
- * (c) overtrue <i@overtrue.me>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
-
 namespace WorkWechatSdk\Kernel;
 
 use Closure;
@@ -250,7 +241,7 @@ class BaseClient
     }
 
     /**
-     * Return retry middleware.
+     * 重试中间件
      *
      * @return Closure
      */
@@ -269,7 +260,7 @@ class BaseClient
 
                     if (!empty($response['errcode']) && in_array(abs($response['errcode']), [40001, 40014, 42001], true)) {
                         $this->accessToken->refresh();
-                        $this->app['logger']->debug('Retrying with refreshed access token.');
+                        $this->app['logger']->debug('刷新access token后重试.');
 
                         return true;
                     }

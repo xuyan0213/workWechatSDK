@@ -11,6 +11,7 @@
 
 namespace WorkWechatSdk\WeWork\OAuth;
 
+use Overtrue\Socialite\SocialiteManager;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 
@@ -24,7 +25,7 @@ class ServiceProvider implements ServiceProviderInterface
     public function register(Container $app)
     {
         $app['oauth'] = function ($app) {
-            $socialite = (new Manager([
+            $socialite = (new SocialiteManager([
                 'wework' => [
                     'base_url' => $app['config']['http']['base_uri'],
                     'client_id' => $app['config']['corp_id'],

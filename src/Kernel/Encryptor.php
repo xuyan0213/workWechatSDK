@@ -15,7 +15,7 @@ use WorkWechatSdk\Kernel\Exceptions\RuntimeException;
 use WorkWechatSdk\Kernel\Support\AES;
 use WorkWechatSdk\Kernel\Support\XML;
 use Throwable;
-use function WorkWechatSdk\Kernel\Support\str_random;
+use function WorkWechatSdk\Kernel\Support\strRandom;
 
 /**
  * Class Encryptor.
@@ -23,17 +23,17 @@ use function WorkWechatSdk\Kernel\Support\str_random;
  */
 class Encryptor
 {
-    public const ERROR_INVALID_SIGNATURE = -40001; // 签名验证错误
-    public const ERROR_PARSE_XML = -40002; // 	xml/json解析失败
-    public const ERROR_CALC_SIGNATURE = -40003; // sha加密生成签名失败
-    public const ERROR_INVALID_AES_KEY = -40004; // AESKey 非法
-    public const ERROR_RECEIVE_ID = -40005; // ReceiveId 校验错误
-    public const ERROR_ENCRYPT_AES = -40006; // AES 加密失败
-    public const ERROR_DECRYPT_AES = -40007; // AES 解密失败
-    public const ILLEGAL_BUFFER = -40008; // 解密后得到的buffer非法
-    public const ERROR_BASE64_ENCODE = -40009; // base64加密失败
-    public const ERROR_BASE64_DECODE = -40010; // base64解密失败
-    public const ERROR_XML_BUILD = -40011; // 生成xml/json失败
+    const ERROR_INVALID_SIGNATURE = -40001; // 签名验证错误
+    const ERROR_PARSE_XML = -40002; // 	xml/json解析失败
+    const ERROR_CALC_SIGNATURE = -40003; // sha加密生成签名失败
+    const ERROR_INVALID_AES_KEY = -40004; // AESKey 非法
+    const ERROR_RECEIVE_ID = -40005; // ReceiveId 校验错误
+    const ERROR_ENCRYPT_AES = -40006; // AES 加密失败
+    const ERROR_DECRYPT_AES = -40007; // AES 解密失败
+    const ILLEGAL_BUFFER = -40008; // 解密后得到的buffer非法
+    const ERROR_BASE64_ENCODE = -40009; // base64加密失败
+    const ERROR_BASE64_DECODE = -40010; // base64解密失败
+    const ERROR_XML_BUILD = -40011; // 生成xml/json失败
 
     /**
      * App id.
@@ -99,7 +99,7 @@ class Encryptor
     public function encrypt(string $xml, string $nonce = null, int $timestamp = null): string
     {
         try {
-            $xml = $this->pkcs7Pad(str_random(16).pack('N', strlen($xml)).$xml.$this->appId, $this->blockSize);
+            $xml = $this->pkcs7Pad(strRandom(16).pack('N', strlen($xml)).$xml.$this->appId, $this->blockSize);
 
             $encrypted = base64_encode(AES::encrypt(
                 $xml,
