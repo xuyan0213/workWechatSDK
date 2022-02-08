@@ -7,8 +7,15 @@ use WorkWechatSdk\Kernel\Exceptions\InvalidArgumentException;
 use WorkWechatSdk\Tests\TestCase;
 use WorkWechatSdk\WeWork\User\Client;
 
+/**
+ * 成员管理
+ */
 class ClientTest extends TestCase
 {
+    /**
+     * 创建成员
+     * @return void
+     */
     public function testCreate()
     {
         $client = $this->mockApiClient(Client::class);
@@ -16,13 +23,10 @@ class ClientTest extends TestCase
         $this->assertSame('mock-result', $client->create(['foo' => 'bar']));
     }
 
-    public function testUpdate()
-    {
-        $client = $this->mockApiClient(Client::class);
-        $client->expects()->httpPostJson('cgi-bin/user/update', ['userid' => 'overtrue', 'foo' => 'bar'])->andReturn('mock-result');
-        $this->assertSame('mock-result', $client->update('overtrue', ['foo' => 'bar']));
-    }
-
+    /**
+     * 读取成员
+     * @return void
+     */
     public function testGet()
     {
         $client = $this->mockApiClient(Client::class);
@@ -30,6 +34,21 @@ class ClientTest extends TestCase
         $this->assertSame('mock-result', $client->get('overtrue'));
     }
 
+    /**
+     * 更新成员
+     * @return void
+     */
+    public function testUpdate()
+    {
+        $client = $this->mockApiClient(Client::class);
+        $client->expects()->httpPostJson('cgi-bin/user/update', ['userid' => 'overtrue', 'foo' => 'bar'])->andReturn('mock-result');
+        $this->assertSame('mock-result', $client->update('overtrue', ['foo' => 'bar']));
+    }
+
+    /**
+     * 删除成员
+     * @return void
+     */
     public function testDelete()
     {
         $client = $this->mockApiClient(Client::class, 'batchDelete');
@@ -40,6 +59,10 @@ class ClientTest extends TestCase
         $this->assertSame('mock-result', $client->delete(['overtrue', 'foo']));
     }
 
+    /**
+     * 批量删除成员
+     * @return void
+     */
     public function testBatchDelete()
     {
         $client = $this->mockApiClient(Client::class);
@@ -47,6 +70,10 @@ class ClientTest extends TestCase
         $this->assertSame('mock-result', $client->batchDelete(['overtrue', 'foo']));
     }
 
+    /**
+     * 获取部门成员
+     * @return void
+     */
     public function testGetDepartmentUsers()
     {
         $client = $this->mockApiClient(Client::class);
@@ -63,6 +90,10 @@ class ClientTest extends TestCase
         $this->assertSame('mock-result', $client->getDepartmentUsers(15, true));
     }
 
+    /**
+     * 获取部门成员详情
+     * @return void
+     */
     public function testGetDetailedDepartmentUsers()
     {
         $client = $this->mockApiClient(Client::class);
@@ -79,6 +110,10 @@ class ClientTest extends TestCase
         $this->assertSame('mock-result', $client->getDetailedDepartmentUsers(18, true));
     }
 
+    /**
+     * userid与openid互换 userid转openid
+     * @return void
+     */
     public function testUserIdToOpenid()
     {
         $client = $this->mockApiClient(Client::class);
@@ -87,6 +122,10 @@ class ClientTest extends TestCase
         $this->assertSame('mock-result', $client->userIdToOpenid('overtrue'));
     }
 
+    /**
+     * userid与openid互换.openid转userid
+     * @return void
+     */
     public function testOpenidToUserId()
     {
         $client = $this->mockApiClient(Client::class);
@@ -95,6 +134,10 @@ class ClientTest extends TestCase
         $this->assertSame('mock-result', $client->openidToUserId('mock-openid'));
     }
 
+    /**
+     * 手机号获取userid
+     * @return void
+     */
     public function testMobileToUserId()
     {
         $client = $this->mockApiClient(Client::class);
@@ -103,6 +146,10 @@ class ClientTest extends TestCase
         $this->assertSame('mock-result', $client->mobileToUserId('mock-mobile'));
     }
 
+    /**
+     * 二次验证
+     * @return void
+     */
     public function testAccept()
     {
         $client = $this->mockApiClient(Client::class);
@@ -110,6 +157,10 @@ class ClientTest extends TestCase
         $this->assertSame('mock-result', $client->accept('overtrue'));
     }
 
+    /**
+     * 邀请成员
+     * @return void
+     */
     public function testInvite()
     {
         $client = $this->mockApiClient(Client::class);
@@ -118,6 +169,10 @@ class ClientTest extends TestCase
         $this->assertSame('mock-result', $client->invite($params));
     }
 
+    /**
+     * 获取加入企业二维码
+     * @return void
+     */
     public function testGetInvitationQrCode()
     {
         $client = $this->mockApiClient(Client::class);
@@ -133,6 +188,10 @@ class ClientTest extends TestCase
         $this->assertSame('mock-result', $client->getInvitationQrCode(1));
     }
 
+    /**
+     * 获取企业活跃成员数
+     * @return void
+     */
     public function testGetActiveStat()
     {
         $client = $this->mockApiClient(Client::class);
