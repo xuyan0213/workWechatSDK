@@ -188,7 +188,7 @@ class Client extends BaseClient
             return $this->url;
         }
 
-        return Support\current_url();
+        return Support\currentUrl();
     }
 
     /**
