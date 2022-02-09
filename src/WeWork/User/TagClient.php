@@ -9,6 +9,9 @@ use WorkWechatSdk\Kernel\BaseClient;
 use WorkWechatSdk\Kernel\Exceptions\InvalidConfigException;
 use WorkWechatSdk\Kernel\Support\Collection;
 
+/**
+ * 标签管理
+ */
 class TagClient extends BaseClient
 {
     /**
@@ -16,8 +19,8 @@ class TagClient extends BaseClient
      *
      * @see https://developer.work.weixin.qq.com/document/path/90210
      *
-     * @param string   $tagName
-     * @param int|null $tagId
+     * @param string   $tagName 标签名称，长度限制为32个字以内（汉字或英文字母），标签名不可与其他标签重名。
+     * @param int|null $tagId 标签id，非负整型，指定此参数时新增的标签会生成对应的标签id，不指定时则以目前最大的id自增。
      *
      * @return array|object|ResponseInterface|string|Collection
      *
