@@ -202,8 +202,6 @@ class ServerGuard
             );
         }
 
-        $this->app->events->dispatch(new Events\ServerGuardResponseCreated($response));
-
         return $response;
     }
 

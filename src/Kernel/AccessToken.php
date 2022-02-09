@@ -104,8 +104,8 @@ abstract class AccessToken implements AccessTokenInterface
         $cacheKey = $this->getCacheKey();
         $cache = $this->getCache();
 
-        if (!$refresh && $cache->has($cacheKey) && $result = $cache->get($cacheKey)) {
-            return $result;
+        if (!$refresh && $cache->has($cacheKey)) {
+            return $cache->get($cacheKey);
         }
 
         /** @var array $token */
@@ -113,11 +113,8 @@ abstract class AccessToken implements AccessTokenInterface
 
         $this->setToken($token[$this->tokenKey], $token['expires_in'] ?? 7200);
 
-        $this->token = $token;
-
-        $this->app->events->dispatch(new Events\AccessTokenRefreshed($this));
-
         return $token;
+
     }
 
     /**

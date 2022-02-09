@@ -20,7 +20,7 @@ class Clause
      *
      * @return $this
      */
-    public function where(...$args): Clause
+    public function where(...$args)
     {
         $this->clauses['where'][] = $args;
 
@@ -32,9 +32,9 @@ class Clause
      *
      * @return bool
      */
-    public function intercepted($payload): bool
+    public function intercepted($payload)
     {
-        return $this->interceptWhereClause($payload);
+        return (bool) $this->interceptWhereClause($payload);
     }
 
     /**
@@ -42,24 +42,13 @@ class Clause
      *
      * @return bool
      */
-    protected function interceptWhereClause($payload): bool
+    protected function interceptWhereClause($payload)
     {
         foreach ($this->clauses['where'] as $item) {
             list($key, $value) = $item;
-
-            if (!isset($payload[$key])) {
-                continue;
-            }
-
-            if (is_array($value) && !in_array($payload[$key], $value)) {
-                return true;
-            }
-
-            if (!is_array($value) && $payload[$key] !== $value) {
+            if (isset($payload[$key]) && $payload[$key] !== $value) {
                 return true;
             }
         }
-
-        return false;
     }
 }
