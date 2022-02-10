@@ -161,13 +161,13 @@ class BaseClient
     /**
      * @param string $url
      * @param string $method
-     * @param array  $options
-     * @param bool   $returnRaw
+     * @param array $options
+     * @param bool $returnRaw
      *
      * @return ResponseInterface|Collection|array|object|string
      *
-     * @throws InvalidConfigException
      * @throws GuzzleException
+     * @throws InvalidConfigException
      */
     public function request(string $url, string $method = 'GET', array $options = [], $returnRaw = false)
     {

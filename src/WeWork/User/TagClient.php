@@ -33,7 +33,6 @@ class TagClient extends BaseClient
             'tagname' => $tagName,
             'tagid' => $tagId,
         ];
-
         return $this->httpPostJson('cgi-bin/tag/create', $params);
     }
 

@@ -4,7 +4,6 @@
 namespace WorkWechatSdk\Kernel\Traits;
 
 use Closure;
-use ReflectionException;
 use WorkWechatSdk\Kernel\Clauses\Clause;
 use WorkWechatSdk\Kernel\Contracts\EventHandlerInterface;
 use WorkWechatSdk\Kernel\Decorators\FinallyResult;
