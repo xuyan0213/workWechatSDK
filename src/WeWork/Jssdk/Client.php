@@ -49,7 +49,7 @@ class Client extends BaseClient
      *
      * @throws InvalidConfigException
      * @throws RuntimeException
-     * @throws GuzzleException
+     * 
      * @throws \Psr\SimpleCache\InvalidArgumentException|InvalidArgumentException
      */
     public function getAgentConfigArray(
@@ -79,7 +79,7 @@ class Client extends BaseClient
      *
      * @throws InvalidConfigException
      * @throws RuntimeException
-     * @throws GuzzleException
+     * 
      * @throws \Psr\SimpleCache\InvalidArgumentException|InvalidArgumentException
      */
     public function buildAgentConfig(
@@ -107,7 +107,7 @@ class Client extends BaseClient
      *
      * @throws InvalidConfigException
      * @throws RuntimeException
-     * @throws GuzzleException
+     * 
      * @throws \Psr\SimpleCache\InvalidArgumentException|InvalidArgumentException
      */
     protected function agentConfigSignature($agentId, string $url = null, string $nonce = null, $timestamp = null): array
@@ -152,7 +152,7 @@ class Client extends BaseClient
      * @throws InvalidArgumentException
      * @throws InvalidConfigException
      * @throws RuntimeException
-     * @throws GuzzleException
+     * 
      * @throws \Psr\SimpleCache\InvalidArgumentException
      */
     public function getTicket(bool $refresh = false, string $type = 'config'): array
@@ -184,7 +184,7 @@ class Client extends BaseClient
      *
      * @throws InvalidConfigException
      * @throws RuntimeException
-     * @throws GuzzleException
+     * 
      * @throws \Psr\SimpleCache\InvalidArgumentException|InvalidArgumentException
      */
     public function getAgentTicket(int $agentId, bool $refresh = false, string $type = 'agent_config')

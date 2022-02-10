@@ -2,10 +2,8 @@
 
 
 namespace WorkWechatSdk\WeWork\ExternalContact;
-;
 
 use WorkWechatSdk\Kernel\BaseClient;
-use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 use WorkWechatSdk\Kernel\Exceptions\InvalidConfigException;
 use WorkWechatSdk\Kernel\Support\Collection;
@@ -28,7 +26,7 @@ class GroupChatClient extends BaseClient
      *
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws GuzzleException|InvalidConfigException
+
      */
 
     public function getGroupChats(int $statusFilter = 0, array $useridList = [], string $cursor = '', int $limit = 1000)
@@ -54,7 +52,7 @@ class GroupChatClient extends BaseClient
      *
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws InvalidConfigException|GuzzleException
+     * @throws InvalidConfigException
      */
 
     public function getGroupChat(string $chatId, int $needName = 0)
@@ -72,7 +70,7 @@ class GroupChatClient extends BaseClient
      *
      * @param string $opengid 小程序在微信获取到的群ID，参见wx.getGroupEnterInfo
      * @return array|object|ResponseInterface|string|Collection
-     * @throws GuzzleException
+
      * @throws InvalidConfigException
      * @see https://developer.work.weixin.qq.com/document/path/94822
      */
@@ -88,7 +86,7 @@ class GroupChatClient extends BaseClient
      * @param array $chatIdList 必填 使用该配置的客户群ID列表，支持5个。见客户群ID获取方法
      * @param array $fields 非必填项,详情参考文档
      * @return array|Collection|object|ResponseInterface|string
-     * @throws GuzzleException
+
      * @throws InvalidConfigException
      */
     public function addJoinWay(int $scene, array $chatIdList, array $fields)
@@ -107,7 +105,7 @@ class GroupChatClient extends BaseClient
      * @see https://developer.work.weixin.qq.com/document/path/92229#获取客户群进群方式配置
      * @param string $configId	联系方式的配置id
      * @return array|object|ResponseInterface|string|Collection
-     * @throws GuzzleException
+
      * @throws InvalidConfigException
      */
     public function getJoinWay(string $configId)
@@ -127,7 +125,7 @@ class GroupChatClient extends BaseClient
      * @param array $chatIdList 必填 使用该配置的客户群ID列表，支持5个。见客户群ID获取方法
      * @param array $fields 非必填项,详情参考文档
      * @return array|object|ResponseInterface|string|Collection
-     * @throws GuzzleException
+
      * @throws InvalidConfigException
      */
     public function updateJoinWay(string $configId, int $scene, array $chatIdList, array $fields)
@@ -147,7 +145,7 @@ class GroupChatClient extends BaseClient
      * @see https://developer.work.weixin.qq.com/document/path/92229#删除客户群进群方式配置
      * @param string $configId 联系方式的配置id
      * @return array|object|ResponseInterface|string|Collection
-     * @throws GuzzleException
+
      * @throws InvalidConfigException
      */
     public function delJoinWay(string $configId)

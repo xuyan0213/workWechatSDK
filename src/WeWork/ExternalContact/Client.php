@@ -3,7 +3,6 @@
 
 namespace WorkWechatSdk\WeWork\ExternalContact;
 
-use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 use WorkWechatSdk\Kernel\BaseClient;
 use WorkWechatSdk\Kernel\Exceptions\InvalidConfigException;
@@ -21,7 +20,7 @@ class Client extends BaseClient
      *
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws InvalidConfigException|GuzzleException
+     * @throws InvalidConfigException
      *
      * @see https://developer.work.weixin.qq.com/document/path/92113
      */
@@ -39,7 +38,7 @@ class Client extends BaseClient
      *
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws InvalidConfigException|GuzzleException
+     * @throws InvalidConfigException
      *
      * @see https://developer.work.weixin.qq.com/document/path/92114
      */
@@ -62,7 +61,7 @@ class Client extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+
      */
     public function batchGetByUser(array $userIdList, string $cursor, int $limit)
     {
@@ -83,7 +82,7 @@ class Client extends BaseClient
      *
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws GuzzleException
+
      * @throws InvalidConfigException
      *
      * @see https://developer.work.weixin.qq.com/document/path/92115
@@ -115,7 +114,7 @@ class Client extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+
      */
     public function unionidToExternalUserid(string $unionid = null, string $openid = null)
     {
@@ -138,7 +137,7 @@ class Client extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+
      */
     public function toServiceExternalUserid(string $externalUserid)
     {
@@ -160,7 +159,7 @@ class Client extends BaseClient
      *
      * @return array|Collection|object|ResponseInterface|string
      * @throws InvalidConfigException
-     * @throws GuzzleException
+
      *
      * @author 读心印 <aa24615@qq.com>
      */
@@ -179,7 +178,7 @@ class Client extends BaseClient
      *
      * @return array|Collection|object|ResponseInterface|string
      * @throws InvalidConfigException
-     * @throws GuzzleException
+
      *
      * @author 读心印 <aa24615@qq.com>
      */
@@ -200,7 +199,7 @@ class Client extends BaseClient
      *
      * @return array|Collection|object|ResponseInterface|string
      * @throws InvalidConfigException
-     * @throws GuzzleException
+
      *
      * @author 读心印 <aa24615@qq.com>
      */
@@ -225,7 +224,7 @@ class Client extends BaseClient
      * @param string attachmentType 附件类型,不同的附件类型用于不同的场景。1：朋友圈；2:商品图册
      * @return array|Collection|object|ResponseInterface|string
      * @throws InvalidConfigException
-     * @throws GuzzleException
+
      */
     public function uploadAttachment(string $path, string $mediaType, string $attachmentType)
     {

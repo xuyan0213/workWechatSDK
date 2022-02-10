@@ -3,7 +3,6 @@
 
 namespace WorkWechatSdk\WeWork\User;
 
-use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 use WorkWechatSdk\Kernel\BaseClient;
 use WorkWechatSdk\Kernel\Exceptions\InvalidConfigException;
@@ -25,7 +24,7 @@ class DepartmentClient extends BaseClient
      * @param int|null $id 部门id，32位整型，指定时必须大于1。若不填该参数，将自动生成id
      * @return array|object|ResponseInterface|string|Collection
      *
-     * @throws GuzzleException
+     * 
      * @throws InvalidConfigException
      * @see https://developer.work.weixin.qq.com/document/path/90205
      */
@@ -51,7 +50,7 @@ class DepartmentClient extends BaseClient
      * @param int|null $order
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws GuzzleException
+     * 
      * @throws InvalidConfigException
      * @see https://developer.work.weixin.qq.com/document/path/90206
      */
@@ -74,7 +73,7 @@ class DepartmentClient extends BaseClient
      *
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws InvalidConfigException|GuzzleException
+     * @throws InvalidConfigException
      *
      * @see https://developer.work.weixin.qq.com/document/path/90207
      */
@@ -90,7 +89,7 @@ class DepartmentClient extends BaseClient
      *
      * @return array|object|ResponseInterface|string|Collection
      *
-     * @throws GuzzleException
+     * 
      * @throws InvalidConfigException
      *
      * @see https://developer.work.weixin.qq.com/document/path/95350
@@ -107,7 +106,7 @@ class DepartmentClient extends BaseClient
      *
      * @return array|object|ResponseInterface|string|Collection
      *
-     * @throws GuzzleException
+     * 
      * @throws InvalidConfigException
      *
      * @see https://developer.work.weixin.qq.com/document/path/95351
@@ -124,7 +123,7 @@ class DepartmentClient extends BaseClient
      *
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws InvalidConfigException|GuzzleException
+     * @throws InvalidConfigException
      *
      * @see https://developer.work.weixin.qq.com/document/path/90208
      */

@@ -3,7 +3,6 @@
 
 namespace WorkWechatSdk\WeWork\MsgAudit;
 
-use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 use WorkWechatSdk\Kernel\BaseClient;
 use WorkWechatSdk\Kernel\Exceptions\InvalidConfigException;
@@ -22,7 +21,7 @@ class Client extends BaseClient
      *
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws InvalidConfigException|GuzzleException
+     * @throws InvalidConfigException
      */
     public function getPermitUsers(string $type = null)
     {
@@ -37,7 +36,7 @@ class Client extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      */
     public function getSingleAgreeStatus(array $info)
     {
@@ -56,7 +55,7 @@ class Client extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      */
     public function getRoomAgreeStatus(string $roomId)
     {
@@ -75,7 +74,7 @@ class Client extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      */
     public function getRoom(string $roomId)
     {

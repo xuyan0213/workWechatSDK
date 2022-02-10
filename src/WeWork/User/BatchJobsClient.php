@@ -1,17 +1,8 @@
 <?php
 
-/*
- * This file is part of the overtrue/wechat.
- *
- * (c) overtrue <i@overtrue.me>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
 
 namespace WorkWechatSdk\WeWork\User;
 
-use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 use WorkWechatSdk\Kernel\BaseClient;
 use WorkWechatSdk\Kernel\Exceptions\InvalidConfigException;
@@ -33,7 +24,7 @@ class BatchJobsClient extends BaseClient
      * @param array $callback 回调信息。如填写该项则任务完成后，通过callback推送事件给企业。具体请参考应用回调模式中的相应选项
      * @return ResponseInterface|Collection|array|object|string
      *
-     * @throws GuzzleException
+     * 
      * @throws InvalidConfigException
      */
     public function batchUpdateUsers(string $mediaId, bool $toInvite = true, array $callback = [])
@@ -56,7 +47,7 @@ class BatchJobsClient extends BaseClient
      * @param array $callback
      * @return ResponseInterface|Collection|array|object|string
      *
-     * @throws GuzzleException
+     * 
      * @throws InvalidConfigException
      */
     public function batchReplaceUsers(string $mediaId, bool $toInvite = true, array $callback = [])
@@ -79,7 +70,7 @@ class BatchJobsClient extends BaseClient
      * @param array $callback
      * @return ResponseInterface|Collection|array|object|string
      *
-     * @throws GuzzleException
+     * 
      * @throws InvalidConfigException
      */
     public function batchReplaceDepartments(string $mediaId, bool $toInvite = true, array $callback = [])
@@ -102,7 +93,7 @@ class BatchJobsClient extends BaseClient
      * @return ResponseInterface|Collection|array|object|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      */
     public function getJobStatus(string $jobId)
     {

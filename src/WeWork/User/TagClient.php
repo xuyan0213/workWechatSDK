@@ -3,7 +3,6 @@
 
 namespace WorkWechatSdk\WeWork\User;
 
-use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 use WorkWechatSdk\Kernel\BaseClient;
 use WorkWechatSdk\Kernel\Exceptions\InvalidConfigException;
@@ -25,7 +24,7 @@ class TagClient extends BaseClient
      * @return array|object|ResponseInterface|string|Collection
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      */
     public function create(string $tagName, int $tagId = null)
     {
@@ -47,7 +46,7 @@ class TagClient extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      */
     public function update(int $tagId, string $tagName)
     {
@@ -68,7 +67,7 @@ class TagClient extends BaseClient
      *
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws InvalidConfigException|GuzzleException
+     * @throws InvalidConfigException
      */
     public function delete(int $tagId)
     {
@@ -84,7 +83,7 @@ class TagClient extends BaseClient
      *
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws InvalidConfigException|GuzzleException
+     * @throws InvalidConfigException
      */
     public function get(int $tagId)
     {
@@ -100,7 +99,7 @@ class TagClient extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      */
     public function tagUsers(int $tagId, array $userList = [])
     {
@@ -117,7 +116,7 @@ class TagClient extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      */
     public function tagDepartments(int $tagId, array $partyList = [])
     {
@@ -133,7 +132,7 @@ class TagClient extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      */
     public function untagUsers(int $tagId, array $userList = [])
     {
@@ -149,7 +148,7 @@ class TagClient extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      */
     public function untagDepartments(int $tagId, array $partyList = [])
     {
@@ -165,7 +164,7 @@ class TagClient extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      */
     protected function tagOrUntagUsers(string $endpoint, int $tagId, array $userList = [], array $partyList = [])
     {
@@ -183,7 +182,7 @@ class TagClient extends BaseClient
      * @see https://developer.work.weixin.qq.com/document/path/90216
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws InvalidConfigException|GuzzleException
+     * @throws InvalidConfigException
      */
     public function list()
     {

@@ -4,7 +4,6 @@
 namespace WorkWechatSdk\WeWork\ExternalContact;
 
 use WorkWechatSdk\Kernel\BaseClient;
-use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 use WorkWechatSdk\Kernel\Exceptions\InvalidConfigException;
 use WorkWechatSdk\Kernel\Support\Collection;
@@ -24,7 +23,6 @@ class TransferCustomerClient extends BaseClient
      *
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws GuzzleException
      * @throws InvalidConfigException
      *
      * @see https://developer.work.weixin.qq.com/document/path/92124
@@ -54,7 +52,7 @@ class TransferCustomerClient extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      */
     public function resignedTransferCustomer(array $externalUserId, string $handoverUserId, string $takeoverUserId)
     {
@@ -74,7 +72,7 @@ class TransferCustomerClient extends BaseClient
      * @param array $chatIds 	需要转群主的客户群ID列表。取值范围： 1 ~ 100
      * @param string $newOwner	新群主ID
      * @return array|Collection|object|ResponseInterface|string
-     * @throws InvalidConfigException|GuzzleException
+     * @throws InvalidConfigException
      */
     public function transferGroupChat(array $chatIds, string $newOwner)
     {
@@ -97,7 +95,7 @@ class TransferCustomerClient extends BaseClient
      * @param string $takeoverUserId 接替成员的userid
      * @param string $cursor    分页查询的cursor，每个分页返回的数据不会超过1000条；不填或为空表示获取第一个分页
      *
-     * @throws InvalidConfigException|GuzzleException
+     * @throws InvalidConfigException
      */
     public function resignedTransferResult(string $handoverUserId, string $takeoverUserId, string $cursor = '')
     {
@@ -121,7 +119,7 @@ class TransferCustomerClient extends BaseClient
      * @param string $takeoverUserId 接替成员的userid
      * @param string $cursor    分页查询的cursor，每个分页返回的数据不会超过1000条；不填或为空表示获取第一个分页
      *
-     * @throws InvalidConfigException|GuzzleException
+     * @throws InvalidConfigException
      */
     public function transferResult(string $handoverUserId, string $takeoverUserId, string $cursor = '')
     {
@@ -143,7 +141,7 @@ class TransferCustomerClient extends BaseClient
      * @param string $transferSuccessMessage    转移成功后发给客户的消息，最多200个字符，不填则使用默认文案
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws GuzzleException|InvalidConfigException
+     * |InvalidConfigException
      * @see https://developer.work.weixin.qq.com/document/path/92125
      *
      */
@@ -170,7 +168,7 @@ class TransferCustomerClient extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      *
      *
      * @see https://developer.work.weixin.qq.com/document/14020
@@ -199,7 +197,7 @@ class TransferCustomerClient extends BaseClient
      * @param string $takeoverUserId 接替成员的userid
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      */
     public function getTransferResult(string $externalUserId, string $handoverUserId, string $takeoverUserId)
     {

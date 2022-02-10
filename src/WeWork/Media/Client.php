@@ -3,7 +3,6 @@
 
 namespace WorkWechatSdk\WeWork\Media;
 
-use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 use WorkWechatSdk\Kernel\BaseClient;
 use WorkWechatSdk\Kernel\Exceptions\InvalidConfigException;
@@ -25,7 +24,7 @@ class Client extends BaseClient
      * @return array|Response|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      *
      * @see https://developer.work.weixin.qq.com/document/path/90254
      */
@@ -41,7 +40,7 @@ class Client extends BaseClient
      * @param array $form
      *
      * @return array|Collection|object|ResponseInterface|string
-     * @throws GuzzleException
+     * 
      * @throws InvalidConfigException
      */
     public function uploadImage(string $path, array $form = [])
@@ -56,7 +55,7 @@ class Client extends BaseClient
      * @param array $form
      *
      * @return array|Collection|object|ResponseInterface|string
-     * @throws GuzzleException
+     * 
      * @throws InvalidConfigException
      */
     public function uploadVoice(string $path, array $form = [])
@@ -71,7 +70,7 @@ class Client extends BaseClient
      * @param array $form
      *
      * @return array|Collection|object|ResponseInterface|string
-     * @throws GuzzleException
+     * 
      * @throws InvalidConfigException
      */
     public function uploadVideo(string $path, array $form = [])
@@ -86,7 +85,7 @@ class Client extends BaseClient
      * @param array $form
      *
      * @return array|Collection|object|ResponseInterface|string
-     * @throws GuzzleException
+     * 
      * @throws InvalidConfigException
      */
     public function uploadFile(string $path, array $form = [])
@@ -104,7 +103,7 @@ class Client extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      *
      * @see https://developer.work.weixin.qq.com/document/path/90253
      */
@@ -127,7 +126,7 @@ class Client extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      */
     public function uploadImg(string $path, array $form = [])
     {
@@ -148,7 +147,7 @@ class Client extends BaseClient
      * @return array|Response|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      */
     public function getHdVoice(string $mediaId)
     {
@@ -162,7 +161,7 @@ class Client extends BaseClient
      * @return array|Response|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      */
     protected function getResources(string $mediaId, string $uri)
     {

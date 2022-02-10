@@ -3,7 +3,6 @@
 
 namespace WorkWechatSdk\WeWork\ExternalContact;
 
-use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 use WorkWechatSdk\Kernel\BaseClient;
 use WorkWechatSdk\Kernel\Exceptions\InvalidArgumentException;
@@ -29,7 +28,7 @@ class MessageClient extends BaseClient
      * @param array $attachments 附件，最多支持添加9个附件
      *
      * @return array|Collection|object|ResponseInterface|string
-     * @throws GuzzleException
+
      * @throws InvalidArgumentException
      * @throws InvalidConfigException
      */
@@ -56,7 +55,7 @@ class MessageClient extends BaseClient
      *
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws InvalidConfigException|GuzzleException
+     * @throws InvalidConfigException
      * @deprecated 企微接口不再维护
      * @see https://developer.work.weixin.qq.com/document/16251
      */
@@ -85,7 +84,7 @@ class MessageClient extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+
      */
     public function getGroupmsgListV2(string $chatType, int $startTime, int $endTime, string $creator = null, int $filterType = null, int $limit = null, string $cursor = null)
     {
@@ -115,7 +114,7 @@ class MessageClient extends BaseClient
      *
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws InvalidConfigException|GuzzleException
+     * @throws InvalidConfigException
      */
     public function getGroupmsgTask(string $msgId, int $limit = null, string $cursor = null)
     {
@@ -143,7 +142,7 @@ class MessageClient extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+
      */
     public function getGroupmsgSendResult(string $msgId, string $userid, int $limit = null, string $cursor = null)
     {
@@ -169,7 +168,7 @@ class MessageClient extends BaseClient
      * @param array $attachments
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws GuzzleException
+
      * @throws InvalidArgumentException
      * @throws InvalidConfigException
      */
@@ -192,7 +191,7 @@ class MessageClient extends BaseClient
      * @param $msgTemplate array 欢迎语模板
      * @see https://developer.work.weixin.qq.com/document/path/92366#%E6%B7%BB%E5%8A%A0%E5%85%A5%E7%BE%A4%E6%AC%A2%E8%BF%8E%E8%AF%AD%E7%B4%A0%E6%9D%90
      *
-     * @throws InvalidConfigException|GuzzleException
+     * @throws InvalidConfigException
      * @return array|Collection|object|ResponseInterface|string
      */
     public function addGroupWelcomeTemplate(array $msgTemplate)
@@ -208,7 +207,7 @@ class MessageClient extends BaseClient
      * @param $templateId string    欢迎语素材id
      * @param $msgTemplate array    欢迎语模板
      * @throws InvalidConfigException
-     * @throws GuzzleException
+
      * @return array|Collection|object|ResponseInterface|string
      */
     public function updateGroupWelcomeTemplate(string $templateId, array $msgTemplate)
@@ -225,7 +224,7 @@ class MessageClient extends BaseClient
      * @see https://developer.work.weixin.qq.com/document/path/92366#获取入群欢迎语素材
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+
      * @return array|Collection|object|ResponseInterface|string
      */
     public function getGroupWelcomeTemplate(string $templateId)
@@ -241,7 +240,7 @@ class MessageClient extends BaseClient
      * @see https://developer.work.weixin.qq.com/document/path/92366#%E5%88%A0%E9%99%A4%E5%85%A5%E7%BE%A4%E6%AC%A2%E8%BF%8E%E8%AF%AD%E7%B4%A0%E6%9D%90
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+
      * @return array|Collection|object|ResponseInterface|string
      */
     public function deleteGroupWelcomeTemplate(string $templateId)

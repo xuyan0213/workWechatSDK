@@ -3,7 +3,6 @@
 
 namespace WorkWechatSdk\WeWork\OA;
 
-use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 use WorkWechatSdk\Kernel\BaseClient;
 use WorkWechatSdk\Kernel\Exceptions\InvalidConfigException;
@@ -23,7 +22,7 @@ class CalendarClient extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      *
      * @see https://developer.work.weixin.qq.com/document/path/93647#%E5%88%9B%E5%BB%BA%E6%97%A5%E5%8E%86
      */
@@ -41,7 +40,7 @@ class CalendarClient extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      *
      * @see https://developer.work.weixin.qq.com/document/path/93647#%E6%9B%B4%E6%96%B0%E6%97%A5%E5%8E%86
      */
@@ -60,7 +59,7 @@ class CalendarClient extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      *
      * @see https://developer.work.weixin.qq.com/document/path/93647#%E8%8E%B7%E5%8F%96%E6%97%A5%E5%8E%86%E8%AF%A6%E6%83%85
      */
@@ -77,7 +76,7 @@ class CalendarClient extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      *
      * @see https://developer.work.weixin.qq.com/document/path/93647#%E5%88%A0%E9%99%A4%E6%97%A5%E5%8E%86
      */

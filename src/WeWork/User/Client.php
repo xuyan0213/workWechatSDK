@@ -1,17 +1,8 @@
 <?php
 
-/*
- * This file is part of the overtrue/wechat.
- *
- * (c) overtrue <i@overtrue.me>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
 
 namespace WorkWechatSdk\WeWork\User;
 
-use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 use WorkWechatSdk\Kernel\BaseClient;
 use WorkWechatSdk\Kernel\Exceptions\InvalidArgumentException;
@@ -34,7 +25,7 @@ class Client extends BaseClient
      * @return ResponseInterface|Collection|array|object|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      */
     public function create(array $data)
     {
@@ -49,7 +40,7 @@ class Client extends BaseClient
      *
      * @return ResponseInterface|Collection|array|object|string
      *
-     * @throws InvalidConfigException|GuzzleException
+     * @throws InvalidConfigException
      */
     public function get(string $userId)
     {
@@ -67,7 +58,7 @@ class Client extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      */
     public function update(string $id, array $data)
     {
@@ -84,7 +75,7 @@ class Client extends BaseClient
      * @return ResponseInterface|Collection|array|object|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      */
     public function delete($userId)
     {
@@ -105,7 +96,7 @@ class Client extends BaseClient
      * @return ResponseInterface|Collection|array|object|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      */
     public function batchDelete(array $userIds)
     {
@@ -123,7 +114,7 @@ class Client extends BaseClient
      *
      * @return ResponseInterface|Collection|array|object|string
      *
-     * @throws InvalidConfigException|GuzzleException
+     * @throws InvalidConfigException
      */
     public function getDepartmentUsers(int $departmentId, bool $fetchChild = false)
     {
@@ -145,7 +136,7 @@ class Client extends BaseClient
      *
      * @return ResponseInterface|Collection|array|object|string
      *
-     * @throws InvalidConfigException|GuzzleException
+     * @throws InvalidConfigException
      */
     public function getDetailedDepartmentUsers(int $departmentId, bool $fetchChild = false)
     {
@@ -165,7 +156,7 @@ class Client extends BaseClient
      * @param string $userId
      * @return ResponseInterface|Collection|array|object|string
      *
-     * @throws GuzzleException
+     * 
      * @throws InvalidConfigException
      */
     public function userIdToOpenid(string $userId)
@@ -187,7 +178,7 @@ class Client extends BaseClient
      * @return ResponseInterface|Collection|array|object|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      */
     public function openidToUserId(string $openid)
     {
@@ -208,7 +199,7 @@ class Client extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      */
     public function mobileToUserId(string $mobile)
     {
@@ -228,7 +219,7 @@ class Client extends BaseClient
      *
      * @return ResponseInterface|Collection|array|object|string
      *
-     * @throws InvalidConfigException|GuzzleException
+     * @throws InvalidConfigException
      */
     public function accept(string $userId)
     {
@@ -249,7 +240,7 @@ class Client extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      */
     public function invite(array $params)
     {
@@ -266,7 +257,7 @@ class Client extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidArgumentException
-     * @throws InvalidConfigException|GuzzleException
+     * @throws InvalidConfigException
      */
     public function getInvitationQrCode(int $sizeType = 1)
     {
@@ -284,7 +275,7 @@ class Client extends BaseClient
      *
      * @param string $date
      * @return array|Collection|object|ResponseInterface|string
-     * @throws GuzzleException
+     * 
      * @throws InvalidConfigException
      */
     public function getActiveStat(string $date)

@@ -3,7 +3,6 @@
 
 namespace WorkWechatSdk\WeWork\Base;
 
-use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 use WorkWechatSdk\Kernel\BaseClient;
 use WorkWechatSdk\Kernel\Exceptions\InvalidConfigException;
@@ -19,7 +18,7 @@ class Client extends BaseClient
      * 获取企业微信服务器的ip段
      *
      * @return array|object|ResponseInterface|string
-     * @throws InvalidConfigException|GuzzleException
+     * @throws InvalidConfigException
      * @see https://developer.work.weixin.qq.com/document/path/90238#%E8%8E%B7%E5%8F%96%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84ip%E6%AE%B5
      */
     public function getCallbackIp()
@@ -37,7 +36,7 @@ class Client extends BaseClient
      *
      * @return array|Collection|object|ResponseInterface|string
      * @throws InvalidConfigException
-     * @throws GuzzleException
+
      */
     public function getOpenCorpid(string $corpId)
     {
@@ -54,7 +53,7 @@ class Client extends BaseClient
      *
      * @return array|Collection|object|ResponseInterface|string
      * @throws InvalidConfigException
-     * @throws GuzzleException
+
      */
     public function batchUseridToOpenUserid(array $useridList)
     {
@@ -66,7 +65,7 @@ class Client extends BaseClient
      * @see https://developer.work.weixin.qq.com/document/path/91437
      * @param string $code
      * @return array|object|ResponseInterface|string|Collection
-     * @throws GuzzleException
+
      * @throws InvalidConfigException
      */
     public function getUser(string $code)

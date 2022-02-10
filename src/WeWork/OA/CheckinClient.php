@@ -3,7 +3,6 @@
 
 namespace WorkWechatSdk\WeWork\OA;
 
-use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 use WorkWechatSdk\Kernel\BaseClient;
 use WorkWechatSdk\Kernel\Exceptions\InvalidConfigException;
@@ -27,7 +26,7 @@ class CheckinClient extends BaseClient
      * @return array|object|ResponseInterface|string|Collection
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      */
     public function checkinRecords(int $startTime, int $endTime, array $userList, int $type = 3)
     {
@@ -52,7 +51,7 @@ class CheckinClient extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      */
     public function checkinRules(int $datetime, array $userList)
     {
@@ -72,7 +71,7 @@ class CheckinClient extends BaseClient
      * @return ResponseInterface|Collection|array|object|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      *
      */
     public function corpCheckinRules()
@@ -92,7 +91,7 @@ class CheckinClient extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      *
      */
     public function checkinDayData(int $startTime, int $endTime, array $userids)
@@ -118,7 +117,7 @@ class CheckinClient extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      */
     public function checkinMonthData(int $startTime, int $endTime, array $userids)
     {
@@ -143,7 +142,7 @@ class CheckinClient extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      *
      * @author 读心印 <aa24615@qq.com>
      */
@@ -168,7 +167,7 @@ class CheckinClient extends BaseClient
      * @param int $month 排班表月份，格式为年月，如202011
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws GuzzleException
+     * 
      * @throws InvalidConfigException
      */
     public function setCheckinSchedus(string $groupId,array $items,int $month)
@@ -192,7 +191,7 @@ class CheckinClient extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      *
      */
     public function addCheckinUserface(string $userid, string $userface)
@@ -213,7 +212,7 @@ class CheckinClient extends BaseClient
      * @param array $useridList 需要获取打卡记录的用户列表
      * @param int $filterType 	过滤类型，1表示按打卡时间过滤，2表示按设备上传打卡记录的时间过滤，默认值是1
      * @return array|object|ResponseInterface|string|Collection
-     * @throws GuzzleException
+     * 
      * @throws InvalidConfigException
      */
     public function getHardwareCheckinData(int $startTime, int $endTime, array $useridList, int $filterType = 1)

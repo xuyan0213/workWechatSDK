@@ -3,7 +3,6 @@
 
 namespace WorkWechatSdk\WeWork\OA;
 
-use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 use WorkWechatSdk\Kernel\BaseClient;
 use WorkWechatSdk\Kernel\Exceptions\InvalidConfigException;
@@ -24,7 +23,7 @@ class Client extends BaseClient
      * @return array|object|ResponseInterface|string|Collection
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      */
     public function getTemplateDetail(string $templateId)
     {
@@ -51,7 +50,7 @@ class Client extends BaseClient
      * @param array $notifyer 抄送人节点userid列表，仅use_template_approver为0时生效。
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws GuzzleException
+     * 
      * @throws InvalidConfigException
      */
     public function applyEvent(string $creatorUserid, string $templateId, array $approver, array $applyData, array $summaryList, int $useTemplateApprover = 0, int $department = null, int $notifyType = 1, $notifyer = [])
@@ -84,7 +83,7 @@ class Client extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      */
     public function getApprovalInfo(int $startTime, int $endTime, int $nextCursor = 0, int $size = 100, array $filters = [])
     {
@@ -109,7 +108,7 @@ class Client extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      */
     public function getApprovalDetail(int $number)
     {
@@ -131,7 +130,7 @@ class Client extends BaseClient
      *
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws GuzzleException
+     * 
      * @throws InvalidConfigException
      */
     public function getApprovalData(int $startTime, int $endTime, int $nextNumber = null)
@@ -153,7 +152,7 @@ class Client extends BaseClient
      *
      * @return array|object|ResponseInterface|string|Collection
      *
-     * @throws GuzzleException
+     * 
      * @throws InvalidConfigException
      */
     public function getCorpConf()
@@ -168,7 +167,7 @@ class Client extends BaseClient
      *
      * @param string $userid
      * @return array|object|ResponseInterface|string|Collection
-     * @throws GuzzleException
+     * 
      * @throws InvalidConfigException
      */
     public function getUserVacationQuota(string $userid)
@@ -192,7 +191,7 @@ class Client extends BaseClient
      *
      * @return array|object|ResponseInterface|string|Collection
      *
-     * @throws GuzzleException
+     * 
      * @throws InvalidConfigException
      */
     public function setOneUserQuota(string $userid,int $vacationId, int $leftDuration,int $timeAttr,string $remarks = '')

@@ -2,7 +2,6 @@
 
 namespace WorkWechatSdk\WeWork\Agent;
 
-use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 use WorkWechatSdk\Kernel\BaseClient;
 use WorkWechatSdk\Kernel\Exceptions\InvalidConfigException;
@@ -18,7 +17,6 @@ class WorkbenchClient extends BaseClient
      * @param int $agentId
      * @param $attributes
      * @return array|object|ResponseInterface|string|Collection
-     * @throws GuzzleException
      * @throws InvalidConfigException
      * @see https://developer.work.weixin.qq.com/document/path/92535
      */
@@ -31,7 +29,6 @@ class WorkbenchClient extends BaseClient
      * 获取应用在工作台展示的模版
      * @param int $agentId
      * @return array|object|ResponseInterface|string|Collection
-     * @throws GuzzleException
      * @throws InvalidConfigException
      * @see https://developer.work.weixin.qq.com/document/path/92535
      */
@@ -48,7 +45,6 @@ class WorkbenchClient extends BaseClient
      * @param int $agentId
      * @param $attributes
      * @return array|object|ResponseInterface|string|Collection
-     * @throws GuzzleException
      * @throws InvalidConfigException
      * @see https://developer.work.weixin.qq.com/document/path/92535
      */

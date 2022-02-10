@@ -3,7 +3,6 @@
 
 namespace WorkWechatSdk\WeWork\Message;
 
-use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 use WorkWechatSdk\Kernel\BaseClient;
 use WorkWechatSdk\Kernel\Exceptions\InvalidArgumentException;
@@ -36,7 +35,7 @@ class Client extends BaseClient
      * @return ResponseInterface|Collection|array|object|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      */
     public function send(array $message)
     {
@@ -56,7 +55,7 @@ class Client extends BaseClient
      * @return ResponseInterface|Collection|array|object|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      *
      */
     public function updateTaskCard(array $userids, int $agentId, string $taskId, string $replaceName = '已收到')

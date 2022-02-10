@@ -3,7 +3,6 @@
 
 namespace WorkWechatSdk\WeWork\Agent;
 
-use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 use WorkWechatSdk\Kernel\BaseClient;
 use WorkWechatSdk\Kernel\Exceptions\InvalidConfigException;
@@ -22,7 +21,7 @@ class Client extends BaseClient
      * @param int $agentId
      * @return array|object|ResponseInterface|string|Collection
      *
-     * @throws InvalidConfigException|GuzzleException
+     * @throws InvalidConfigException
      */
     public function get(int $agentId)
     {
@@ -42,7 +41,6 @@ class Client extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
      */
     public function set(int $agentId, array $attributes)
     {
@@ -54,7 +52,7 @@ class Client extends BaseClient
      * @param int $agentId
      * @param array $attributes
      * @return array|Collection|object|ResponseInterface|string
-     * @throws GuzzleException
+     
      * @throws InvalidConfigException
      */
     public function createMenu(int $agentId,array $attributes)
@@ -66,7 +64,7 @@ class Client extends BaseClient
      * 获取菜单
      * @param int $agentId
      * @return array|Collection|object|ResponseInterface|string
-     * @throws GuzzleException
+     
      * @throws InvalidConfigException
      * @see https://developer.work.weixin.qq.com/document/path/90232
      */
@@ -83,7 +81,7 @@ class Client extends BaseClient
      * 删除菜单
      * @param int $agentId
      * @return array|Collection|object|ResponseInterface|string
-     * @throws GuzzleException
+     
      * @throws InvalidConfigException
      * @see https://developer.work.weixin.qq.com/document/path/90233
      */
@@ -98,7 +96,7 @@ class Client extends BaseClient
     /**
      * 获取应用列表
      * @return array|Collection|object|ResponseInterface|string
-     * @throws InvalidConfigException|GuzzleException
+     * @throws InvalidConfigException
      *
      * @deprecated 企微已废弃该接口,请勿使用
      */

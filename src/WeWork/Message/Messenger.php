@@ -3,7 +3,6 @@
 
 namespace WorkWechatSdk\WeWork\Message;
 
-use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 use WorkWechatSdk\Kernel\Exceptions\InvalidArgumentException;
 use WorkWechatSdk\Kernel\Exceptions\InvalidConfigException;
@@ -164,7 +163,7 @@ class Messenger
      *
      * @throws InvalidArgumentException
      * @throws RuntimeException
-     * @throws GuzzleException
+     * 
      * @throws InvalidConfigException
      */
     public function send($message = null)

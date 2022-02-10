@@ -3,7 +3,6 @@
 
 namespace WorkWechatSdk\WeWork\ExternalContact;
 
-use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 use WorkWechatSdk\Kernel\BaseClient;
 use WorkWechatSdk\Kernel\Exceptions\InvalidArgumentException;
@@ -30,7 +29,7 @@ class MomentClient extends BaseClient
      *
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws GuzzleException|InvalidConfigException|InvalidArgumentException
+     * @throws InvalidConfigException|InvalidArgumentException
      */
     public function createTask(array $userList, array $departmentList, array $tagList, string $content, array $attachments)
     {
@@ -60,7 +59,7 @@ class MomentClient extends BaseClient
      *
      * @param string $jobId 异步任务id，最大长度为64字节，由创建发表内容到客户朋友圈任务接口获取
      * @return array|Collection|object|ResponseInterface|string
-     * @throws InvalidConfigException|GuzzleException
+     * @throws InvalidConfigException
      */
     public function getTask(string $jobId)
     {
@@ -82,7 +81,7 @@ class MomentClient extends BaseClient
      *
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws GuzzleException|InvalidConfigException
+     * @throws InvalidConfigException
      */
     public function list(string $startTime, string $endTime, string $creator = '', int $filterType = 2, string $cursor = '', int $limit = 20)
     {
@@ -108,7 +107,7 @@ class MomentClient extends BaseClient
      *
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws InvalidConfigException|GuzzleException
+     * @throws InvalidConfigException
      */
     public function getTasks(string $momentId, string $cursor = '', int $limit = 500)
     {
@@ -132,7 +131,7 @@ class MomentClient extends BaseClient
      *
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws InvalidConfigException|GuzzleException
+     * @throws InvalidConfigException
      */
     public function getCustomers(string $momentId, string $userId, string $cursor, int $limit)
     {
@@ -157,7 +156,7 @@ class MomentClient extends BaseClient
      *
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws InvalidConfigException|GuzzleException
+     * @throws InvalidConfigException
      */
     public function getSendResult(string $momentId, string $userId, string $cursor, int $limit)
     {
@@ -180,7 +179,7 @@ class MomentClient extends BaseClient
      *
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws InvalidConfigException|GuzzleException
+     * @throws InvalidConfigException
      */
     public function getComments(string $momentId, string $userId)
     {

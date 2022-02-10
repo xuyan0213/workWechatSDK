@@ -3,7 +3,6 @@
 
 namespace WorkWechatSdk\WeWork\ExternalContact;
 
-use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 use WorkWechatSdk\Kernel\BaseClient;
 use WorkWechatSdk\Kernel\Exceptions\InvalidConfigException;
@@ -27,7 +26,7 @@ class StatisticsClient extends BaseClient
      *
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws InvalidConfigException|GuzzleException
+     * @throws InvalidConfigException
      */
 
     public function userBehavior(array $userIds, $from, $to, array $partyIds = [])
@@ -52,7 +51,7 @@ class StatisticsClient extends BaseClient
      * @param array $attributes     其他非必填参数
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws GuzzleException
+     * 
      * @throws InvalidConfigException
      */
 
@@ -79,7 +78,7 @@ class StatisticsClient extends BaseClient
      * @param array $userIds 群主ID列表。最多100个 群主过滤 如果不填，表示获取应用可见范围内全部群主的数据（但是不建议这么用，如果可见范围人数超过1000人，为了防止数据包过大，会报错 81017）
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws GuzzleException
+     * 
      * @throws InvalidConfigException
      */
     public function groupChatStatisticGroupByDay(int $dayBeginTime, int $dayEndTime,array $userIds = [])

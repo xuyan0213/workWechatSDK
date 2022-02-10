@@ -2,10 +2,8 @@
 
 
 namespace WorkWechatSdk\WeWork\ExternalContact;
-;
 
 use WorkWechatSdk\Kernel\BaseClient;
-use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 use WorkWechatSdk\Kernel\Exceptions\InvalidConfigException;
 use WorkWechatSdk\Kernel\Support\Collection;
@@ -27,7 +25,7 @@ class TagClient extends BaseClient
      * @return array|Collection|object|ResponseInterface|string
      *
      * @throws InvalidConfigException
-     * @throws GuzzleException
+     * 
      */
 
     public function getCorpTags(array $tagIds = [], array $groupIds = [])
@@ -52,7 +50,7 @@ class TagClient extends BaseClient
      * @param array $attributes
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws GuzzleException
+     * 
      * @throws InvalidConfigException
      */
 
@@ -79,7 +77,7 @@ class TagClient extends BaseClient
      * @param int|null $agentId
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws GuzzleException
+     * 
      * @throws InvalidConfigException
      */
 
@@ -106,7 +104,7 @@ class TagClient extends BaseClient
      * @param int|null $agentId
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws GuzzleException
+     * 
      * @throws InvalidConfigException
      */
 
@@ -133,7 +131,7 @@ class TagClient extends BaseClient
      * @param array $removeTag 要移除的标签列表
      * @return array|Collection|object|ResponseInterface|string
      *
-     * @throws GuzzleException
+     * 
      * @throws InvalidConfigException
      */
 

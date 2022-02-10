@@ -4,7 +4,6 @@
 namespace WorkWechatSdk\WeWork\AppChat;
 
 use WorkWechatSdk\Kernel\Support\Collection;
-use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 use WorkWechatSdk\Kernel\BaseClient;
 use WorkWechatSdk\Kernel\Exceptions\InvalidConfigException;
@@ -23,7 +22,7 @@ class Client extends BaseClient
      *
      * @return array|object|ResponseInterface|string|Collection
      *
-     * @throws GuzzleException
+
      * @throws InvalidConfigException
      * @see https://developer.work.weixin.qq.com/document/path/90245
      */
@@ -39,7 +38,7 @@ class Client extends BaseClient
      *
      * @return array|object|ResponseInterface|string|Collection
      *
-     * @throws GuzzleException
+
      * @throws InvalidConfigException
      * @see https://developer.work.weixin.qq.com/document/path/90246
      */
@@ -55,7 +54,7 @@ class Client extends BaseClient
      *
      * @return array|object|ResponseInterface|string|Collection
      *
-     * @throws GuzzleException
+
      * @throws InvalidConfigException
      *
      * @see https://developer.work.weixin.qq.com/document/path/90247
@@ -72,7 +71,7 @@ class Client extends BaseClient
      *
      * @return array|object|ResponseInterface|string|Collection
      *
-     * @throws GuzzleException
+
      * @throws InvalidConfigException
      * @see https://developer.work.weixin.qq.com/document/path/90248
      */
