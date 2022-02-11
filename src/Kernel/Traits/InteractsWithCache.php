@@ -3,13 +3,13 @@
 
 namespace WorkWechatSdk\Kernel\Traits;
 
-use Symfony\Component\Cache\Simple\FilesystemCache;
 use WorkWechatSdk\Kernel\Exceptions\InvalidArgumentException;
 use WorkWechatSdk\Kernel\ServiceContainer;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\SimpleCache\CacheInterface as SimpleCacheInterface;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Cache\Psr16Cache;
+use Symfony\Component\Cache\Simple\FilesystemCache;
 
 /**
  * Trait InteractsWithCache.
@@ -59,7 +59,8 @@ trait InteractsWithCache
     public function setCache($cache)
     {
         if (empty(\array_intersect([SimpleCacheInterface::class, CacheItemPoolInterface::class], \class_implements($cache)))) {
-            throw new InvalidArgumentException(\sprintf('The cache instance must implements %s or %s interface.', SimpleCacheInterface::class, CacheItemPoolInterface::class));
+            throw new InvalidArgumentException(\sprintf('The cache instance must implements %s or %s interface.',
+                SimpleCacheInterface::class, CacheItemPoolInterface::class));
         }
 
         if ($cache instanceof CacheItemPoolInterface) {

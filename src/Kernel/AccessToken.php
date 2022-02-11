@@ -81,7 +81,7 @@ abstract class AccessToken implements AccessTokenInterface
      * @throws \Psr\SimpleCache\InvalidArgumentException
      * @throws InvalidConfigException
      * @throws InvalidArgumentException
-     * @throws RuntimeException|GuzzleException
+     * @throws RuntimeException
      */
     public function getRefreshedToken(): array
     {
@@ -97,7 +97,7 @@ abstract class AccessToken implements AccessTokenInterface
      * @throws \Psr\SimpleCache\InvalidArgumentException
      * @throws InvalidConfigException
      * @throws InvalidArgumentException
-     * @throws RuntimeException|GuzzleException
+     * @throws RuntimeException
      */
     public function getToken(bool $refresh = false): array
     {
@@ -147,7 +147,7 @@ abstract class AccessToken implements AccessTokenInterface
      * @throws \Psr\SimpleCache\InvalidArgumentException
      * @throws InvalidConfigException
      * @throws InvalidArgumentException
-     * @throws RuntimeException|GuzzleException
+     * @throws RuntimeException
      */
     public function refresh(): AccessTokenInterface
     {
@@ -164,7 +164,7 @@ abstract class AccessToken implements AccessTokenInterface
      *
      * @throws HttpException
      * @throws InvalidConfigException
-     * @throws InvalidArgumentException|GuzzleException
+     * @throws InvalidArgumentException
      */
     public function requestToken(array $credentials, bool $toArray = false)
     {
@@ -189,7 +189,7 @@ abstract class AccessToken implements AccessTokenInterface
      * @throws \Psr\SimpleCache\InvalidArgumentException
      * @throws InvalidConfigException
      * @throws InvalidArgumentException
-     * @throws RuntimeException|GuzzleException
+     * @throws RuntimeException
      */
     public function applyToRequest(RequestInterface $request, array $requestOptions = []): RequestInterface
     {
@@ -236,7 +236,7 @@ abstract class AccessToken implements AccessTokenInterface
      * @throws \Psr\SimpleCache\InvalidArgumentException
      * @throws InvalidConfigException
      * @throws InvalidArgumentException
-     * @throws RuntimeException|GuzzleException
+     * @throws RuntimeException
      */
     protected function getQuery(): array
     {
